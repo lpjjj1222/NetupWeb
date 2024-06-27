@@ -17,11 +17,11 @@ import { getDictionary } from "~/lib/get-dictionary";
 import type { Meteor } from "~/types/meteors";
 
 const meteors_data: Meteor = {
-  name: "Join our Discord",
+  name: "Contact Us",
   description:
-    "Join our Discord server to chat with other developers and get help.",
-  button_content: "Chat with us",
-  url: "https://discord.com/invite/b9uTZjdkrb",
+    "Need Help? Contact Our Support Team.",
+  button_content: "Email Us",
+  url: "mailto: contact@netup.social",
 };
 
 export default async function IndexPage({
@@ -55,7 +55,7 @@ export default async function IndexPage({
               <div>
                 <span className="text-zinc-500 sm:text-xl">
                   {dict.marketing.sub_title ||
-                    "Your complete All-in-One solution for building SaaS services."}
+                    ""}
                 </span>
                 <TypewriterEffectSmooths />
               </div>
@@ -96,7 +96,7 @@ export default async function IndexPage({
       </section>
 
       <section className="h-[100vh] w-full hidden xl:block">
-        <div className="flex h-full w-full justify-between px-[220px]">
+        <div className="flex h-full w-full justify-between px-[100px]">
           <div className="flex w-[60%] flex-col pr-4 pt-40">
             <WobbleCardShow />
           </div>
@@ -126,13 +126,12 @@ export default async function IndexPage({
         <div className="flex h-full w-full flex-col items-center pb-[100px] pt-10">
           <div>
             <h1 className="mb-6 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
-              What People Are Saying
+              Events You Can Discover Here
             </h1>
           </div>
           <div className="mb-6 text-xl dark:text-zinc-100 md:text-xl">
-            Don’t just take our word for it. Here’s what{" "}
-            <span className="font-bold">real people</span> are saying about
-            Saasfly.
+          Build professional connections through various {" "}
+            <span className="font-bold">meetups</span>.
           </div>
 
           <div className="w-full overflow-x-hidden">

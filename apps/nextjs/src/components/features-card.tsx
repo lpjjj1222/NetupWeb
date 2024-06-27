@@ -13,32 +13,32 @@ interface Item {
 
 let notifications = [
   {
-    name: "Payment received",
-    description: "Stripe subscription",
+    name: "William Johnson",
+    description: "Software engineer at Microsoft",
     time: "15m ago",
 
-    icon: "💸",
+    icon: "/images/netup/profile1.jpeg",
     color: "#00C9A7",
   },
   {
-    name: "User signed up",
-    description: "Auth, simple and clean",
+    name: "Priya Sharma",
+    description: "Securities Analyst at Goldman Sachs",
     time: "10m ago",
-    icon: "👤",
+    icon: "/images/netup/profile6.jpeg",
     color: "#FFB800",
   },
   {
-    name: "New Emails",
-    description: "Create beautiful emails",
+    name: "Paige Lin",
+    description: "Student at University of Washington",
     time: "5m ago",
-    icon: "💬",
+    icon: "/images/netup/profile5.jpeg",
     color: "#FF3D71",
   },
   {
-    name: "Easy Deploy",
-    description: "Deploy your app with ease",
+    name: "Jacy Chen",
+    description: "Project Manager at Juniper Networks",
     time: "2m ago",
-    icon: "🗞️",
+    icon: "/images/netup/profile4.jpeg",
     color: "#1E86FF",
   },
 ];
@@ -59,14 +59,23 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
       )}
     >
       <div className="flex flex-row items-center gap-3">
-        <div
+        {/* <div
           className="flex h-10 w-10 items-center justify-center rounded-2xl"
           style={{
             backgroundColor: color,
           }}
         >
           <span className="text-lg">{icon}</span>
+        </div> */}
+        <div
+          className="flex h-10 w-10 items-center justify-center rounded-2xl"
+          style={{
+            backgroundColor: color,
+          }}
+        >
+          <img src={icon} style={{borderRadius:'10%'}} />
         </div>
+        
         <div className="flex flex-col overflow-hidden">
           <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium dark:text-white ">
             <span className="text-sm sm:text-lg">{name}</span>

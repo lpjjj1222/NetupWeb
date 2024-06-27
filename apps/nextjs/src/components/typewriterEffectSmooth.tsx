@@ -11,23 +11,14 @@ export function TypewriterEffectSmooths() {
       text: "awesome",
     },
     {
-      text: "apps",
-    },
-    {
-      text: "and",
-    },
-    {
-      text: "ship",
-    },
-    {
-      text: "fast",
+      text: "connections",
     },
     {
       text: "with",
     },
     {
-      text: "Saasfly.",
-      className: "text-blue-500",
+      text: "Netup.",
+      className: "text-orange-500",
     },
   ];
   return (

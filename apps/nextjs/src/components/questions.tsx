@@ -9,31 +9,18 @@ export function Questions() {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger>About Saasfly</AccordionTrigger>
+        <AccordionTrigger>About Netup</AccordionTrigger>
         <AccordionContent>
-          Nextify Limited’s team of experienced developers has invested years
-          into refining our software development methodologies. We’re proud to
-          present our starter kit, a culmination of best practices and proven
-          tools extracted from countless successful projects. This extensively
-          tested kit is more than just code, it’s a cornerstone of our daily
-          operations, consistently helping us deliver exceptional results for
-          our clients. While informed by our unique experiences, the kit’s
-          solutions are meticulously chosen to address common challenges and fit
-          a wide range of scenarios. We believe it offers a streamlined and
-          efficient framework for building SaaS products, empowering you to
-          achieve your project goals.
+          NetupSocial is a premier platform for connecting with professionals and discovering the latest career opportunities. Designed to streamline professional networking, NetupSocial helps you expand your network, explore new career paths, and stay informed about industry trends.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>Why Next.js?</AccordionTrigger>
+        <AccordionTrigger>Why Netup?</AccordionTrigger>
         <AccordionContent>
-          Next.js is a powerful and versatile framework that offers a wide range
-          of benefits for building web applications. It is known for its
-          excellent performance, strong developer experience, and comprehensive
-          feature set.
+        Netup uses innovative swipe-and-match technology to make career networking as easy and engaging as connecting with friends, helping you build valuable professional relationships.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3">
+      {/* <AccordionItem value="item-3">
         <AccordionTrigger>Is this starter for you?</AccordionTrigger>
         <AccordionContent>
           If you’re embarking on the development of a SaaS service and are in
@@ -53,7 +40,7 @@ export function Questions() {
           indispensable insights and tools for anyone aiming to create a
           high-caliber SaaS service.
         </AccordionContent>
-      </AccordionItem>
+      </AccordionItem> */}
     </Accordion>
   );
 }
