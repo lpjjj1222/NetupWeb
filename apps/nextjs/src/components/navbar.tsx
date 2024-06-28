@@ -51,7 +51,7 @@ export function NavBar({
           {children}
         </MainNav>
 
-        <div className="flex items-center space-x-3">
+        {/* <div className="flex items-center space-x-3">
           {rightElements}
           <LocaleChange url={"/"} />
           {!user ? (
@@ -83,7 +83,7 @@ export function NavBar({
                 : "Default Signup Text"}
             </Button>
           )}
-        </div>
+        </div> */}
       </div>
     </header>
   );

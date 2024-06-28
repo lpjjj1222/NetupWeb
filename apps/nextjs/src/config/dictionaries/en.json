@@ -19,7 +19,7 @@
     "": ""
   },
   "marketing": {
-    "introducing": "Introducing Netup",
+    "introducing": "Download Netup App",
     "title": "Netup: Seamless Career Networking",
     "sub_title": "",
     "get_started": "Download App",
@@ -52,7 +52,7 @@
     "": ""
   },
   "common": {
-    "copyright": "Copyright © ${currentYear} Nextify Limited. All rights reserved.",
+    "copyright": "Copyright © ${currentYear} Netup Limited. All rights reserved.",
     "dashboard": {
       "main_nav_documentation": "Documentation",
       "main_nav_support": "Support",

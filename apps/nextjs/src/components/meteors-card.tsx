@@ -6,8 +6,8 @@ export function Meteorss({ meteor }: { meteor: Meteor }) {
   return (
     <div className="w-full">
       <div className="relative w-full">
-        <div className="absolute inset-0 h-full w-full scale-[0.80] transform rounded-full bg-red-500 bg-gradient-to-r from-blue-500 to-teal-500 blur-3xl" />
-        <div className="relative flex h-full flex-col items-start justify-end overflow-hidden rounded-2xl border border-gray-800 px-4 py-8 shadow-xl dark:bg-gray-900 dark:bg-opacity-70">
+        <div className="absolute inset-0 h-full w-full scale-[0.80] transform rounded-full bg-red-500 bg-gradient-to-r from-orange-500 to-yellow-500 blur-3xl" />
+        <div className="relative flex h-full flex-col items-start justify-end overflow-hidden rounded-2xl px-4 py-8 shadow-xl dark:bg-gray-900 dark:bg-opacity-60">
           <h1 className="relative z-50 mb-4 text-2xl font-bold">
             {meteor.name}
           </h1>

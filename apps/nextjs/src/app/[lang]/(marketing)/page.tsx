@@ -39,7 +39,7 @@ export default async function IndexPage({
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 pb-10 md:pb-40">
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 lg:pt-28 xl:pt-28 md:pt-28">
-              <Link href="https://document.saasfly.io" target="_blank">
+              <Link href="https://testflight.apple.com/join/QP0AJmDO" target="_blank">
                 <DocumentGuide>
                   {dict.marketing.introducing || "Introducing Saasfly"}
                 </DocumentGuide>
@@ -61,7 +61,7 @@ export default async function IndexPage({
               </div>
 
               <div className="mt-6 flex sm:flex-row flex-col space-y-4 justify-center sm:space-y-0 sm:space-x-8 sm:justify-start mb-4 w-full">
-                <Link href={`${lang}/login`}>
+                <Link href='https://testflight.apple.com/join/QP0AJmDO'>
                   <ShimmerButton className="flex justify-center mx-auto">
                     <span className="z-10 w-48 whitespace-pre bg-gradient-to-b from-black from-30% to-gray-300/80 bg-clip-text text-center text-sm font-semibold leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 dark:text-transparent">
                       {dict.marketing.get_started}
@@ -69,7 +69,7 @@ export default async function IndexPage({
                   </ShimmerButton>
                 </Link>
 
-                <Link href="https://github.com/saasfly/saasfly" target="_blank">
+                <Link href="https://github.com/NetupApp" target="_blank">
                   <div className="flex h-full items-center justify-center">
                     <Icons.GitHub className="mr-2 h-6 w-6" />
                     <span className="text-base font-semibold">

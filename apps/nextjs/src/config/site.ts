@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "Saasfly",
-  description: "We provide an easier way to build saas service in production",
+  name: "Netup",
+  description: "We provide a premier platform for connecting with professionals. ",
   url: "https://github.com/saasfly/saasfly",
   ogImage: "",
   links: {
-    github: "https://github.com/saasfly/saasfly",
+    github: "https://github.com/NetupApp",
   },
 };

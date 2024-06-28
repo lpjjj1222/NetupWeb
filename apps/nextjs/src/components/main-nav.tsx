@@ -30,18 +30,18 @@ export function MainNav({ items, children, params: { lang } }: MainNavProps) {
   };
   return (
     <div className="flex gap-6 md:gap-10">
-      <Link href={`/${lang}`} className="hidden items-center space-x-2 md:flex">
+      <Link href={`/${lang}`} className="items-center space-x-2 flex flex-row">
         <div>
           <Image
-            src="/images/avatars/saasfly-logo.svg"
+            src="/images/netup/newBigLogo.png"
             width="36"
             height="36"
             alt=""
           />
         </div>
-        <div className="text-2xl font-semibold">Saasfly</div>
+        <div className="text-2xl font-semibold">Netup</div>
       </Link>
-      {items?.length ? (
+      {/* {items?.length ? (
         <nav className="hidden gap-6 md:flex">
           {items?.map((item, index) => (
             <Link
@@ -59,19 +59,19 @@ export function MainNav({ items, children, params: { lang } }: MainNavProps) {
             </Link>
           ))}
         </nav>
-      ) : null}
-      <button
+      ) : null} */}
+      {/* <button
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
         {showMobileMenu ? <Icons.Close /> : <Icons.Logo />}
         <span className="font-bold">Menu</span>
-      </button>
-      {showMobileMenu && items && (
+      </button> */}
+      {/* {showMobileMenu && items && (
         <MobileNav items={items} menuItemClick={handleMenuItemClick}>
           {children}
         </MobileNav>
-      )}
+      )} */}
     </div>
   );
 }
