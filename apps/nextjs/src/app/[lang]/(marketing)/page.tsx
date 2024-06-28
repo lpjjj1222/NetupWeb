@@ -35,7 +35,7 @@ export default async function IndexPage({
 
   return (
     <>
-      <section className="xl:h-[100vh] w-full px-8 sm:px-48 xl:px-48 md:px-48">
+      <section className="xl:h-[100vh] w-full px-8 sm:px-48 xl:px-20 md:px-48 2xl:px-40">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 pb-10 md:pb-40">
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 lg:pt-28 xl:pt-28 md:pt-28">
@@ -62,21 +62,21 @@ export default async function IndexPage({
 
               <div className="mt-6 flex sm:flex-row flex-col space-y-4 justify-center sm:space-y-0 sm:space-x-8 sm:justify-start mb-4 w-full">
                 <Link href='https://testflight.apple.com/join/QP0AJmDO'>
-                  <ShimmerButton className="flex justify-center mx-auto">
-                    <span className="z-10 w-48 whitespace-pre bg-gradient-to-b from-black from-30% to-gray-300/80 bg-clip-text text-center text-sm font-semibold leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 dark:text-transparent">
+                  <ShimmerButton className="flex justify-center items-center mx-auto">
+                    <span className="flex items-center justify-center z-10 w-48 whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:w-80 2xl:h-8 2xl:text-xl">
                       {dict.marketing.get_started}
                     </span>
                   </ShimmerButton>
                 </Link>
 
-                <Link href="https://github.com/NetupApp" target="_blank">
+                {/* <Link href="https://github.com/NetupApp" target="_blank">
                   <div className="flex h-full items-center justify-center">
                     <Icons.GitHub className="mr-2 h-6 w-6" />
                     <span className="text-base font-semibold">
                       {dict.marketing.view_on_github || "View on GitHub"}
                     </span>
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default async function IndexPage({
         </div>
       </section>
 
-      <section className="h-[100vh] w-full hidden xl:block">
+      <section className="h-[100vh] w-full hidden xl:block mt-40">
         <div className="flex h-full w-full justify-between px-[220px]">
           <div className="flex w-[60%] flex-col pr-4 pt-40">
             <div className="px-[120px]">

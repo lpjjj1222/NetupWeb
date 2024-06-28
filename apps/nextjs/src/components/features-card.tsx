@@ -69,11 +69,8 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
         </div> */}
         <div
           className="flex h-10 w-10 items-center justify-center rounded-2xl"
-          style={{
-            backgroundColor: color,
-          }}
         >
-          <img src={icon} style={{borderRadius:'10%'}} />
+          <img src={icon} style={{borderRadius:'10%'}} alt="" />
         </div>
         
         <div className="flex flex-col overflow-hidden">

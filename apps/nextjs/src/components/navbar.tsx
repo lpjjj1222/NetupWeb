@@ -1,17 +1,17 @@
 "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
 import type { User } from "next-auth";
 
-import { cn } from "@saasfly/ui";
-import { Button, buttonVariants } from "@saasfly/ui/button";
+// import { cn } from "@saasfly/ui";
+// import { Button, buttonVariants } from "@saasfly/ui/button";
 
-import { LocaleChange } from "~/components/locale-change";
+// import { LocaleChange } from "~/components/locale-change";
 import useScroll from "~/hooks/use-scroll";
 import { useSigninModal } from "~/hooks/use-signin-modal";
 import type { MainNavItem } from "~/types";
 import { MainNav } from "./main-nav";
-import { UserAccountNav } from "./user-account-nav";
+// import { UserAccountNav } from "./user-account-nav";
 
 type Dictionary = Record<string, string>;
 
@@ -29,17 +29,13 @@ interface NavBarProps {
 }
 
 export function NavBar({
-  user,
   items,
   children,
-  rightElements,
   scroll = false,
   params: { lang },
-  marketing,
-  dropdown,
 }: NavBarProps) {
   const scrolled = useScroll(50);
-  const signInModal = useSigninModal();
+  // const signInModal = useSigninModal();
   return (
     <header
       className={`sticky top-0 z-40 flex w-full justify-center border-border bg-background/60 backdrop-blur-xl transition-all ${
