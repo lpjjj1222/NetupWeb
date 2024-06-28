@@ -54,7 +54,7 @@ export function WobbleCardShow() {
             Host your own event and foster a community
           </h2>
           <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-gray-900">
-          Utilize the easy event scheduler to plan one-on-one or group coffee chats and meals, and kickstart networking interactions during others' events, meals, or coffee chats.
+          Utilize the easy event scheduler to plan one-on-one or group coffee chats and meals, and kickstart networking interactions during others`&apos;` events, meals, or coffee chats.
           </p>
         </div>
         <img

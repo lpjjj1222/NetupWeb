@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-import { cn } from "@saasfly/ui";
-import * as Icons from "@saasfly/ui/icons";
+// import { cn } from "@saasfly/ui";
+// import * as Icons from "@saasfly/ui/icons";
 
-import { MobileNav } from "~/components/mobile-nav";
+// import { MobileNav } from "~/components/mobile-nav";
 import type { MainNavItem } from "~/types";
 
 interface MainNavProps {
@@ -19,15 +19,15 @@ interface MainNavProps {
   };
 }
 
-export function MainNav({ items, children, params: { lang } }: MainNavProps) {
-  const segment = useSelectedLayoutSegment();
+export function MainNav({ params: { lang } }: MainNavProps) {
+  // const segment = useSelectedLayoutSegment();
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
   const toggleMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
-  const handleMenuItemClick = () => {
-    toggleMenu();
-  };
+  // const handleMenuItemClick = () => {
+  //   toggleMenu();
+  // };
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href={`/${lang}`} className="items-center space-x-2 flex flex-row">
