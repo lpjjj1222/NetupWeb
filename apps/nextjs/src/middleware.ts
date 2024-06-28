@@ -30,7 +30,9 @@ function getLocale(request: NextRequest): string | undefined {
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales,
   );
-  return matchLocale(languages, locales, i18n.defaultLocale);
+  // return matchLocale(languages, locales, i18n.defaultLocale);
+  //禁用语言匹配
+  return 'en';
 }
 
 function isNoRedirect(request: NextRequest): boolean {
