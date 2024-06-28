@@ -42,7 +42,7 @@ export function NavBar({
         scroll ? (scrolled ? "border-b" : "bg-background/0") : "border-b"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between py-4">
+      <div className="container flex h-16 items-center justify-between py-4 2xl:max-w-full">
         <MainNav items={items} params={{ lang: `${lang}` }}>
           {children}
         </MainNav>
