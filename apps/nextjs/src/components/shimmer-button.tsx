@@ -17,7 +17,7 @@ const ShimmerButton = ({
   shimmerSize = "0.1em",
   shimmerDuration = "1.5s",
   borderRadius = "100px",
-  background = "radial-gradient(ellipse 80% 50% at 50% 120%,rgba(62, 61, 117),rgba(18, 18, 38))",
+  background = "radial-gradient(ellipse 80% 50% at 50% 120%, #FFC634, #FF8400)",
   className,
   children,
   ...props
