@@ -95,7 +95,7 @@ export default async function IndexPage({
         </div>
       </section>
 
-      <section className="h-[100vh] w-full hidden xl:block">
+      <section className="h-[100vh] w-full hidden xl:block sm:mt-24">
         <div className="flex h-full w-full justify-between px-[100px]">
           <div className="flex w-[60%] flex-col pr-4 pt-40">
             <WobbleCardShow />
