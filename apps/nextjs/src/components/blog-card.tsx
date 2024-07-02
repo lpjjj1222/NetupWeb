@@ -48,7 +48,7 @@ const blogContent = {
   description:
     "A perfect platform to connect with professionals and find the latest career opportunities.",
   image:
-    "/images/netup/rectangle.png",
+    "/images/netup/preview.png",
   authorAvatar:
     "/images/netup/happyLogo.png",
 };
