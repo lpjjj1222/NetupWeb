@@ -35,7 +35,7 @@ export default async function IndexPage({
 
   return (
     <>
-      <section className="xl:h-[100vh] w-full px-8 sm:px-48 xl:px-20 md:px-48 2xl:px-40">
+      <section className="xl:h-[100vh] w-full px-8 sm:px-20 xl:px-20 md:px-48 2xl:px-40">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 pb-10 md:pb-40">
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 lg:pt-28 xl:pt-28 md:pt-28">
@@ -81,7 +81,7 @@ export default async function IndexPage({
             </div>
           </div>
 
-          <div className="h-full w-full hidden xl:block">
+          <div className="h-full w-full block">
             <div className="flex flex-col pt-28">
               <Meteorss meteor={meteors_data} />
               <div className="mt-4 flex w-full justify-between">
