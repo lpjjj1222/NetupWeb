@@ -83,11 +83,13 @@ export default async function IndexPage({
           </div>
 
           <div className="block h-full w-full">
-            <div className="flex flex-col pt-28">
-              <Meteorss meteor={meteors_data} />
-              <div className="mt-4 flex w-full justify-between">
+            <div className="flex flex-col-reverse pt-0 md:flex-col md:pt-28">
+              <div className="hidden md:block">
+                <Meteorss meteor={meteors_data} />
+              </div>
+              <div className="mt-4 flex w-full flex-col-reverse items-center justify-between md:flex-row">
                 <XBlogArticle />
-                <div className="ml-4">
+                <div className="w-full mb-4 md:ml-4 md:mt-0">
                   <FeaturesCard />
                 </div>
               </div>
@@ -140,6 +142,9 @@ export default async function IndexPage({
           </div>
         </div>
       </section>
+      <div className="px-10 block md:hidden">
+        <Meteorss meteor={meteors_data} />
+      </div>
     </>
   );
 }
