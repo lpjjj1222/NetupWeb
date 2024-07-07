@@ -13,7 +13,6 @@ const config = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@saasfly/api",
-    "@saasfly/db",
     "@saasfly/common",
     "@saasfly/ui",
     "@saasfly/stripe",
