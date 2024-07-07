@@ -112,8 +112,8 @@ export default async function IndexPage({
       </section>
 
       <section className="mt-40 hidden h-[70vh] w-full xl:block">
-        <div className="flex h-full w-full justify-between px-[220px]">
-          <div className="flex w-[60%] flex-col pr-4 pt-40">
+        <div className="flex h-full w-full justify-between 2xl:px-[220px]">
+          <div className="flex w-[60%] flex-col pr-4 pt-60 2xl:pt-40">
             <div className="px-[120px]">
               <Questions />
             </div>

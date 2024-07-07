@@ -1,7 +1,6 @@
 "use client";
 
 // import Link from "next/link";
-import type { User } from "next-auth";
 
 // import { cn } from "@saasfly/ui";
 // import { Button, buttonVariants } from "@saasfly/ui/button";
@@ -11,12 +10,10 @@ import useScroll from "~/hooks/use-scroll";
 import { useSigninModal } from "~/hooks/use-signin-modal";
 import type { MainNavItem } from "~/types";
 import { MainNav } from "./main-nav";
-// import { UserAccountNav } from "./user-account-nav";
 
 type Dictionary = Record<string, string>;
 
 interface NavBarProps {
-  user: Pick<User, "name" | "image" | "email"> | undefined;
   items?: MainNavItem[];
   children?: React.ReactNode;
   rightElements?: React.ReactNode;
