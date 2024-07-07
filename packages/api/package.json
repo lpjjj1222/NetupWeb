@@ -25,7 +25,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@saasfly/auth": "workspace:*",
     "@saasfly/db": "workspace:*",
     "@trpc/client": "next",
     "@trpc/server": "next",
