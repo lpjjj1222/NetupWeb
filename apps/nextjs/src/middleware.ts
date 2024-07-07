@@ -66,11 +66,19 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
   const pathname = request.nextUrl.pathname;
+
+  // 检查请求路径是否为 /download 或 /en/download
+  if (pathname === '/download' || pathname ==='/en/download') {
+  // 执行重定向到指定页面，例如 /new-download
+  return NextResponse.redirect("https://testflight.apple.com/join/QP0AJmDO");
+}
+
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) =>
       !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   );
+  
   // Redirect if there is no locale
   if (!isNoRedirect(request) && pathnameIsMissingLocale) {
     const locale = getLocale(request);
@@ -81,6 +89,7 @@ export default async function middleware(request: NextRequest) {
       ),
     );
   }
+
 
   if (isPublicPage(request)) {
     return null;

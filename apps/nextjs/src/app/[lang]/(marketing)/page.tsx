@@ -39,7 +39,7 @@ export default async function IndexPage({
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 md:pt-28 lg:pt-28 xl:pt-28">
               <Link
-                href="https://testflight.apple.com/join/QP0AJmDO"
+                href="/download"
                 target="_blank"
               >
                 <DocumentGuide>
@@ -62,7 +62,7 @@ export default async function IndexPage({
               </div>
 
               <div className="mb-4 mt-6 flex w-full flex-col justify-center space-y-4 sm:flex-row sm:justify-start sm:space-x-8 sm:space-y-0">
-                <Link href="https://testflight.apple.com/join/QP0AJmDO">
+                <Link href="/download">
                   <ShimmerButton className="mx-auto flex items-center justify-center">
                     <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-80 2xl:text-xl">
                       {dict.marketing.get_started}
