@@ -50,10 +50,10 @@ export const metadata = {
   ],
   authors: [
     {
-      name: "saasfly",
+      name: "netup",
     },
   ],
-  creator: "Saasfly",
+  creator: "Netup",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,13 +61,19 @@ export const metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [{
+      url: "https://www.netup.social/newBigLogo.png",
+      width: 120,
+      height: 120,
+      alt: 'Netup App Icon',
+    }]
   },
   icons: {
-    icon: "/newBigLogo.png",
-    shortcut: "/newBigLogo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  metadataBase: new URL("https://show.saasfly.io/"),
+  metadataBase: new URL("https://netup.social/"),
   // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
