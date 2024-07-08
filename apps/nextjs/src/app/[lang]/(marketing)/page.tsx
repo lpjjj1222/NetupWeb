@@ -89,7 +89,7 @@ export default async function IndexPage({
               </div>
               <div className="mt-4 flex w-full flex-col-reverse items-center justify-between md:flex-row">
                 <XBlogArticle />
-                <div className="w-full md:w-auto mb-4 md:ml-4 md:mt-0">
+                <div className="w-full md:w-1/2 mb-4 md:ml-4 md:mt-0">
                   <FeaturesCard />
                 </div>
               </div>

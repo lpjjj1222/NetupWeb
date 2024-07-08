@@ -2,7 +2,7 @@ import { FollowerPointerCard } from "@saasfly/ui/following-pointer";
 
 export function XBlogArticle() {
   return (
-    <div className="w-90 md:w-80">
+    <div className="w-90 md:w-1/2">
       <FollowerPointerCard
         title={
           <TitleComponent
