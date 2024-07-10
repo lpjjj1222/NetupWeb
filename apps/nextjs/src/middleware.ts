@@ -65,27 +65,9 @@ export default async function middleware(request: NextRequest) {
         // 带id跳转，如：跳netup://global-link/user/id-xxx
         // 不带id跳转，如：跳netup://global-link/user
         const suffix = pathList.slice(3).join('/')
-        window.location.href=`${linkPrefix}${suffix}`
-        return NextResponse.next()
-        // return (
-        //   <div style={{ width: '100%', height: '100%', position: 'relative', textAlign: 'right'}}>
-        //     <Image
-        //       src="/img/open_in_safari.jpg"
-        //       width={320}
-        //       height={492}
-        //       alt="Open in safari"
-        //     />
-        //     <div style={{
-        //       marginRight: '10%'
-        //     }}>
-        //     If you didn't install Netup. <Link href="/download"> Download here</Link>
-        //     </div>
-            
-        //   </div>
-        // );
-        // return NextResponse.redirect(
-        //   `${linkPrefix}${suffix}`
-        //   );
+        return NextResponse.redirect(
+          `${linkPrefix}${suffix}`
+          );
       }
     }
   };
@@ -100,18 +82,12 @@ export default async function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    const newUrl = new URL(
-      `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-      request.url,
-    ).toString()
-    window.location.href=newUrl
-    return NextResponse.next()
-    // return NextResponse.redirect(
-    //   new URL(
-    //     `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-    //     request.url,
-    //   ),
-    // );
+    return NextResponse.redirect(
+      new URL(
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        request.url,
+      ),
+    );
   }
 
 }
