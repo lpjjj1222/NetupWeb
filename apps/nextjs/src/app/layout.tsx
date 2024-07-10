@@ -73,7 +73,7 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  metadataBase: new URL("https://netup.social/"),
+  metadataBase: new URL("https://www.netup.social/"),
   // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
