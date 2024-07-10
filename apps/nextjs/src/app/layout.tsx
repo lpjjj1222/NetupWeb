@@ -62,7 +62,7 @@ export const metadata = {
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [{
-      url: "https://www.netup.social/icon.png",
+      url: "https://www.netup.social/newBigLogo.png",
       width: 120,
       height: 120,
       alt: 'Netup App Icon',
