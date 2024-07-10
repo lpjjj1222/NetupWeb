@@ -65,9 +65,10 @@ export default async function middleware(request: NextRequest) {
         // 带id跳转，如：跳netup://global-link/user/id-xxx
         // 不带id跳转，如：跳netup://global-link/user
         const suffix = pathList.slice(3).join('/')
-        return NextResponse.redirect(
-          `${linkPrefix}${suffix}`
-          );
+        return window.location.href=`${linkPrefix}${suffix}`
+        // return NextResponse.redirect(
+        //   `${linkPrefix}${suffix}`
+        //   );
       }
     }
   };
@@ -82,12 +83,17 @@ export default async function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-        request.url,
-      ),
-    );
+    const newUrl = new URL(
+      `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+      request.url,
+    ).toString()
+    return window.location.href=newUrl
+    // return NextResponse.redirect(
+    //   new URL(
+    //     `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+    //     request.url,
+    //   ),
+    // );
   }
 
 }
