@@ -2,8 +2,8 @@ export const siteConfig = {
   name: "Netup Social",
   description: "Netup is a career networking app that helps users build career connections in a more sincere, fun, and personalized way.",
   url: "https://netup.social",
-  ogImage: "",
+  ogImage: "https://www.netup.social/newBigLogo.png",
   links: {
-    github: "https://netup.social",
+    github: "https://www.netup.social",
   },
 };
