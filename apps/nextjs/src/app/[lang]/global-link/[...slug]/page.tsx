@@ -50,7 +50,7 @@ export default function Screen() {
       <Image
         src="/images/netup/open_in_safari.jpg"
         width={320}
-        height={600}
+        height={800}
         alt="Open in safari"
         style={{ marginTop: "2%" }}
       />
