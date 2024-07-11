@@ -37,40 +37,40 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
 
-  // 检查请求路径是否为 /download 或 /en/download
-  if (pathname === '/download' || pathname === '/en/download') {
-    // 执行重定向到指定页面，例如 /new-download
-    return NextResponse.redirect("https://testflight.apple.com/join/QP0AJmDO");
-  }
+  // // 检查请求路径是否为 /download 或 /en/download
+  // if (pathname === '/download' || pathname === '/en/download') {
+  //   // 执行重定向到指定页面，例如 /new-download
+  //   return NextResponse.redirect("https://testflight.apple.com/join/QP0AJmDO");
+  // }
 
-  // netup.social/global-link/xxx -> netup://global-link/xxx
-  const screenMap = new Map<string, string>([
-    ["home", "home"],
-    ["user", "user"],
-    ["discover", "discover"],
-    ["event", "event"],
-    ["chat", "chat"],
-    ["profile", "profile"],
-  ]
-  );
+  // // netup.social/global-link/xxx -> netup://global-link/xxx
+  // const screenMap = new Map<string, string>([
+  //   ["home", "home"],
+  //   ["user", "user"],
+  //   ["discover", "discover"],
+  //   ["event", "event"],
+  //   ["chat", "chat"],
+  //   ["profile", "profile"],
+  // ]
+  // );
 
-  const linkPrefix = "netup://global-link/";
+  // const linkPrefix = "netup://global-link/";
 
-  if (pathname.startsWith("/en/global-link")) {
-    // pathname: /en/global-link/user/id-xxx
-    const pathList = pathname.split('/')
-    // pathList: ["", "en", "global-link", "user", "id-xxx"]
-    if (pathList.length > 3 && pathList[3]) {
-      if (screenMap.has(pathList[3])) {
-        // 带id跳转，如：跳netup://global-link/user/id-xxx
-        // 不带id跳转，如：跳netup://global-link/user
-        const suffix = pathList.slice(3).join('/')
-        return NextResponse.redirect(
-          `${linkPrefix}${suffix}`
-          );
-      }
-    }
-  };
+  // if (pathname.startsWith("/en/global-link")) {
+  //   // pathname: /en/global-link/user/id-xxx
+  //   const pathList = pathname.split('/')
+  //   // pathList: ["", "en", "global-link", "user", "id-xxx"]
+  //   if (pathList.length > 3 && pathList[3]) {
+  //     if (screenMap.has(pathList[3])) {
+  //       // 带id跳转，如：跳netup://global-link/user/id-xxx
+  //       // 不带id跳转，如：跳netup://global-link/user
+  //       const suffix = pathList.slice(3).join('/')
+  //       return NextResponse.redirect(
+  //         `${linkPrefix}${suffix}`
+  //         );
+  //     }
+  //   }
+  // };
 
 
   // Check if there is any supported locale in the pathname
