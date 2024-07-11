@@ -44,21 +44,20 @@ export default function Screen() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor:"white"
       }}
     >
       <Image
         src="/images/netup/open_in_safari.jpg"
         width={320}
-        height={492}
+        height={600}
         alt="Open in safari"
         style={{ marginTop: "2%" }}
       />
 
-      <div style={{ marginTop: "3%" }}>
+      <div style={{ marginTop: "3%", paddingBottom:"20%", color:"black" }}>
         <Link href="/download">
-          <DocumentGuide>
-            {"If you didn't install Netup, Download here"}
-          </DocumentGuide>
+            If you didn't install Netup, Download here
         </Link>
       </div>
     </div>
