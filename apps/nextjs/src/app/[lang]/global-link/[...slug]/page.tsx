@@ -32,7 +32,7 @@ export default function Screen() {
       // 设置超时，如果没有跳转则显示下载链接
       setTimeout(() => {
         window.location.href = window.location.origin;
-      }, 5000); // 2秒后跳转到下载页面
+      }, 6000); // 6秒后跳转到下载页面
     }
   }, [screen, id]);
 
@@ -53,16 +53,16 @@ export default function Screen() {
       <Image
         src="/images/netup/open_in_safari.jpg"
         width={320}
-        height={800}
+        height={1000}
         alt="Open in safari"
         style={{ marginTop: "2%" }}
       />
 
-      <div style={{ marginTop: "3%", paddingBottom: "20%", color: "black" }}>
+      {/* <div style={{ marginTop: "3%", paddingBottom: "20%", color: "black" }}>
         <Link href="/download">
           If you didn't install Netup, Download here
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
