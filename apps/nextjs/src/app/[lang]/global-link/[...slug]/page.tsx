@@ -29,10 +29,10 @@ export default function Screen() {
     if (screen && screenMap.has(screen)) {
       const suffix = id ? `/${id}` : "";
       window.location.href = `${localLinkPrefix}/${screen}${suffix}`;
-      // 设置超时，如果没有跳转则显示下载链接
+      // 设置超时，如果没有跳转则跳转Web页面
       setTimeout(() => {
         window.location.href = window.location.origin;
-      }, 8000); // 8秒后跳转到下载页面
+      }, 6000); // 8秒后跳转到下载页面
     }
   }, [screen, id]);
 
