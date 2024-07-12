@@ -32,7 +32,7 @@ export default function Screen() {
       // 设置超时，如果没有跳转则跳转Web页面
       setTimeout(() => {
         window.location.href = window.location.origin;
-      }, 6000); // 8秒后跳转到下载页面
+      }, 4000); // 4秒后跳转到下载页面
     }
   }, [screen, id]);
 
