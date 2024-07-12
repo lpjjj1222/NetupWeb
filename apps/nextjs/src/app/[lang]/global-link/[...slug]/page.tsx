@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-import { DocumentGuide } from "~/components/document-guide";
-
 const localLinkPrefix = "netup://global-link";
 
 const screenMap = new Map<string, string>([
@@ -27,9 +25,14 @@ export default function Screen() {
     console.log("params", params);
     console.log("screen", screen);
     console.log("id", id);
+
     if (screen && screenMap.has(screen)) {
       const suffix = id ? `/${id}` : "";
       window.location.href = `${localLinkPrefix}/${screen}${suffix}`;
+      // 设置超时，如果没有跳转则显示下载链接
+      setTimeout(() => {
+        window.location.href = window.location.origin;
+      }, 2000); // 2秒后跳转到下载页面
     }
   }, [screen, id]);
 
@@ -44,7 +47,7 @@ export default function Screen() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor:"white"
+        backgroundColor: "white"
       }}
     >
       <Image
@@ -55,9 +58,9 @@ export default function Screen() {
         style={{ marginTop: "2%" }}
       />
 
-      <div style={{ marginTop: "3%", paddingBottom:"20%", color:"black" }}>
+      <div style={{ marginTop: "3%", paddingBottom: "20%", color: "black" }}>
         <Link href="/download">
-            If you didn't install Netup, Download here
+          If you didn't install Netup, Download here
         </Link>
       </div>
     </div>
