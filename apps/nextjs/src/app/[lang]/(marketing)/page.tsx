@@ -9,6 +9,7 @@ import { FeaturesCard } from "~/components/features-card";
 import { Meteorss } from "~/components/meteors-card";
 import { Questions } from "~/components/questions";
 import ShimmerButton from "~/components/shimmer-button";
+import ShimmerButton2 from "~/components/shimmer-button2";
 import { TypewriterEffectSmooths } from "~/components/typewriterEffectSmooth";
 import { WobbleCardShow } from "~/components/wobble";
 import { WordReveal } from "~/components/word-reveal";
@@ -69,6 +70,15 @@ export default async function IndexPage({
                     </span>
                   </ShimmerButton>
                 </Link>
+
+                <Link href="https://docs.google.com/forms/d/e/1FAIpQLSfTc9uSAmcc5s3fsvObgGETFKfsbffyr6RPmU7a1pgkKaubyQ/viewform">
+                  <ShimmerButton2 className="mx-auto flex items-center justify-center">
+                    <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-80 2xl:text-xl">
+                      {dict.marketing.to_be_host}
+                    </span>
+                  </ShimmerButton2>
+                </Link>
+                
 
                 {/* <Link href="https://github.com/NetupApp" target="_blank">
                   <div className="flex h-full items-center justify-center">

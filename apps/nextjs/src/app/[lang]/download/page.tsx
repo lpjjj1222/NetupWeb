@@ -8,7 +8,6 @@ const navigateTimeout = 2000;
 const publicTestFlightLink = "https://testflight.apple.com/join/QP0AJmDO"
 
 export default function Download() {
-    console.log('@@@@@@@Download')
     useEffect(() => {
         window.location.href = publicTestFlightLink
 
