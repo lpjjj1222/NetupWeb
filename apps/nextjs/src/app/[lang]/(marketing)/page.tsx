@@ -65,15 +65,15 @@ export default async function IndexPage({
               <div className="mb-4 mt-6 flex w-full flex-col justify-center space-y-4 sm:flex-row sm:justify-start sm:space-x-8 sm:space-y-0">
                 <Link href="/download">
                   <ShimmerButton className="mx-auto flex items-center justify-center">
-                    <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-80 2xl:text-xl">
+                    <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-60 2xl:text-xl">
                       {dict.marketing.get_started}
                     </span>
                   </ShimmerButton>
                 </Link>
 
                 <Link href="https://docs.google.com/forms/d/e/1FAIpQLSfTc9uSAmcc5s3fsvObgGETFKfsbffyr6RPmU7a1pgkKaubyQ/viewform">
-                  <ShimmerButton2 className="mx-auto flex items-center justify-center">
-                    <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-80 2xl:text-xl">
+                  <ShimmerButton2 className="mx-auto flex  items-center justify-center">
+                    <span className="z-10 flex w-48 items-center justify-center whitespace-pre text-sm font-semibold leading-none tracking-tight text-white 2xl:h-8 2xl:w-60 2xl:text-xl">
                       {dict.marketing.to_be_host}
                     </span>
                   </ShimmerButton2>
