@@ -1,0 +1,10 @@
+#set($events = [])
+
+#foreach($entry in $context.result.hits.hits)
+  $util.qr($events.add($entry.get("_source")))
+#end
+
+$util.toJson({
+  "events": $events,
+  "total": $events.size()
+})

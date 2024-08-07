@@ -1,0 +1,149 @@
+#set( $indexPath = "/event/_search" )
+#set( $distance = $util.defaultIfNull($ctx.args.mi, 10000) )
+#set( $coordinates = $util.defaultIfNull($ctx.args.coordinates, {"lat": 0, "lon": 0}) )
+#set( $skip = $util.defaultIfNull($ctx.args.skip, 0) )
+#set( $size = 6 )
+#set( $eventPrivacy = "PUBLIC" )
+
+#set( $query = {
+  "bool": {
+    "must": [],
+    "filter": [
+      {
+        "geo_distance": {
+          "distance": "${distance}mi",
+          "location.coordinates": $coordinates
+        }
+      }
+    ]
+  }
+})
+
+#set( $dummy = $query.bool.must.add({
+  "match": {
+    "privacy" : {
+      "query" : $eventPrivacy
+    }
+  }
+}))
+
+#if( !$util.isNullOrEmpty($ctx.args.keyword) )
+#set( $dummy = $query.bool.must.add({
+    "multi_match": {
+        "query" : $ctx.args.keyword,
+        "fields": ["eventName^3", "description"]
+    }
+}))
+#end
+
+#set( $ageFilter = [] )
+#if( !$util.isNullOrEmpty($ctx.args.minAge) )
+  #set( $dummy = $ageFilter.add({
+    "bool": {
+      "should": [
+        {"range": {"maxAge": {"gt": $ctx.args.minAge}}},
+        {"bool": {"must_not": {"exists": {"field": "minAge"}}}}
+      ]
+    }
+  }))
+#end
+#if( !$util.isNullOrEmpty($ctx.args.maxAge) )
+  #set( $dummy = $ageFilter.add({
+    "bool": {
+      "should": [
+        {"range": {"minAge": {"lt": $ctx.args.maxAge}}},
+        {"bool": {"must_not": {"exists": {"field": "maxAge"}}}}
+      ]
+    }
+  }))
+#end
+
+#foreach( $filter in $ageFilter )
+#set( $dummy = $query.bool.filter.add($filter) )
+#end
+
+#set( $capacityFilter = [] )
+#if( !$util.isNullOrEmpty($ctx.args.minCapacity) )
+  #set( $dummy = $capacityFilter.add({
+    "bool": {
+      "should": [
+        {"range": {"capacity": {"gte": $ctx.args.minCapacity}}},
+        {"bool": {"must_not": {"exists": {"field": "capacity"}}}}
+      ]
+    }
+  }))
+#end
+#if( !$util.isNullOrEmpty($ctx.args.maxCapacity) )
+  #set( $dummy = $capacityFilter.add({
+    "bool": {
+      "should": [
+        {"range": {"capacity": {"lte": $ctx.args.maxCapacity}}},
+        {"bool": {"must_not": {"exists": {"field": "capacity"}}}}
+      ]
+    }
+  }))
+#end
+
+#foreach( $filter in $capacityFilter )
+#set( $dummy = $query.bool.filter.add($filter) )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.startTime) && !$util.isNullOrEmpty($ctx.args.endTime) )
+  #set( $dummy = $query.bool.filter.add({
+    "range": {
+      "startTime": {
+        "gte": $ctx.args.startTime,
+        "lte": $ctx.args.endTime
+      }
+    }
+  }))
+#end
+
+#foreach( $enumField in ["industries", "eventType", "genders", "language"] )
+  #if( !$util.isNullOrEmpty($ctx.args.get($enumField)) )
+    #set( $dummy = $query.bool.filter.add({
+      "terms": {
+        $enumField: $ctx.args.get($enumField)
+      }
+    }))
+  #end
+#end
+
+$util.log.info("Query: $query")
+
+#set( $sort = [] )
+
+#if( $ctx.args.sortBy == "DISTANCE" )
+  #set( $dummy = $sort.add({
+    "_geo_distance": {
+      "location.coordinates": $coordinates,
+      "order": "asc",
+      "unit": "mi",
+      "mode": "min"
+    }
+  }))
+#end
+
+#if( $ctx.args.sortBy == "STARTTIME" )
+  #set( $dummy = $sort.add({
+    "startTime": {
+      "order": "asc"
+    }
+  }))
+#end
+
+$util.log.info("Sort: $sort")
+
+{
+  "version": "2017-02-28",
+  "operation": "GET",
+  "path": "$indexPath.toLowerCase()",
+  "params": {
+    "body": {
+      "from": $skip,
+      "size": $size,
+      "query": $util.toJson($query),
+      "sort": $util.toJson($sort)
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "resourceName": "prodstorage",
+  "policyUUID": "4a7af394",
+  "bucketName": "netupprodstorage",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -1,0 +1,15 @@
+#set($id = "${ctx.args.userId}${ctx.args.roomId}")
+{
+  "version": "2018-05-29",
+  "operation": "UpdateItem",
+  "key": {
+    "id": { "S": "$id" }
+  },
+  "update": {
+    "expression": "SET unreadCount = if_not_exists(unreadCount, :zero) + :incr",
+    "expressionValues": {
+      ":incr": { "N": "1" },
+      ":zero": { "N": "0" }
+    }
+  }
+}

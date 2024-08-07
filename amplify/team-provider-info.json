@@ -1,0 +1,58 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-netup-prod-6caab-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089629276674:role/amplify-netup-prod-6caab-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089629276674:role/amplify-netup-prod-6caab-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-netup-prod-6caab-deployment",
+      "UnauthRoleName": "amplify-netup-prod-6caab-unauthRole",
+      "StackName": "amplify-netup-prod-6caab",
+      "StackId": "arn:aws:cloudformation:us-east-2:089629276674:stack/amplify-netup-prod-6caab/e24d8190-1c01-11ef-a619-06e81b029fdd",
+      "AmplifyAppId": "d21oljwujrdr0z"
+    },
+    "categories": {
+      "analytics": {
+        "Pinpoint": {
+          "Name": "netupPinpoint-prod",
+          "Id": "1a7eb89bb25a44878581e9adf6875999",
+          "Region": "us-east-2"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "netupPinpoint-prod",
+          "Id": "1a7eb89bb25a44878581e9adf6875999",
+          "Region": "us-east-2"
+        }
+      },
+      "api": {
+        "netup": {}
+      },
+      "auth": {
+        "netupAuth": {}
+      },
+      "function": {
+        "googleMapApi": {
+          "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+          "s3Key": "amplify-builds/googleMapApi-43377965617176384553-build.zip"
+        },
+        "pushNotification": {
+          "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+          "s3Key": "amplify-builds/pushNotification-57755a32414179727174-build.zip"
+        },
+        "pushNotificationForUsers": {
+          "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+          "s3Key": "amplify-builds/pushNotificationForUsers-4c466970647063477475-build.zip"
+        },
+        "recsys": {
+          "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+          "s3Key": "amplify-builds/recsys-6c5075624a4752346555-build.zip"
+        }
+      },
+      "storage": {
+        "prodstorage": {}
+      }
+    }
+  }
+}

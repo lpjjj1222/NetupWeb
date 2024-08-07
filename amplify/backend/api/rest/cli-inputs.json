@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "/accountsRecommendation": {
+      "name": "/accountsRecommendation",
+      "lambdaFunction": "recsys",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/pushNotification": {
+      "name": "/pushNotification",
+      "lambdaFunction": "pushNotification",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/googleMapApi": {
+      "name": "/googleMapApi",
+      "lambdaFunction": "googleMapApi",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/pushNotificationForUsers": {
+      "name": "/pushNotificationForUsers",
+      "lambdaFunction": "pushNotificationForUsers",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
