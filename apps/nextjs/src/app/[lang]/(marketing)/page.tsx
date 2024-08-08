@@ -1,3 +1,5 @@
+
+
 import Link from "next/link";
 
 import * as Icons from "@saasfly/ui/icons";
@@ -16,6 +18,9 @@ import { WordReveal } from "~/components/word-reveal";
 import type { Locale } from "~/config/i18n-config";
 import { getDictionary } from "~/lib/get-dictionary";
 import type { Meteor } from "~/types/meteors";
+import { getAccountById } from "../../../../../../src/controllers/userController"
+import GLOBAL from "~/global";
+import { useEffect } from "react";
 
 const meteors_data: Meteor = {
   name: "Contact Us",
@@ -32,6 +37,16 @@ export default async function IndexPage({
   };
 }) {
   const dict = await getDictionary(lang);
+// TRY TO FETCH SOME DATA FROM AMPLIFY
+//   const fetchAccount = async () => {
+//     console.log('getaccountbyiding');
+//     const idd = await getAccountById(GLOBAL.client, "us-east-2:14de523a-02dd-cab7-6cab-298ce2448f37");
+//     console.log('@@@@@@@@@@', idd);
+// };
+// console.log('fetching account')
+
+// fetchAccount();
+
 
   return (
     <>
