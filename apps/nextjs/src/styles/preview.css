@@ -1,0 +1,29 @@
+.font18BlackBold {
+  font-size: 20px;
+  font-family: 'OpenSans-Bold';
+  color:#000000;
+  font-weight: 600;
+}
+
+.gradient-button {
+  background: linear-gradient(90deg, #FFC634 10%, #FF8400 60%);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.gradient-button:hover {
+  opacity: 0.9;
+}
+
+.hidden-scrollbar {
+  scrollbar-width: none; /* 隐藏滚动条 */
+  -ms-overflow-style: none; /* 适用于 IE 和 Edge */
+}
+

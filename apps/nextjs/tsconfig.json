@@ -1,6 +1,7 @@
 {
   "extends": "@saasfly/typescript-config/base.json",
   "compilerOptions": {
+    "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
