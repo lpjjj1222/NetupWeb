@@ -9,7 +9,7 @@ import withMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@saasfly/api",
@@ -17,7 +17,7 @@ const config = {
     "@saasfly/ui",
     "@saasfly/stripe",
   ],
-  pageExtensions: ["ts", "tsx", "mdx"],
+  pageExtensions: ["ts", "tsx", "mdx","js"],
   experimental: {
     mdxRs: true,
     // serverActions: true,

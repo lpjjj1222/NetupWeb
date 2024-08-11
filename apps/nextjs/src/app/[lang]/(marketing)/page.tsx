@@ -1,5 +1,4 @@
-
-
+import { useEffect } from "react";
 import Link from "next/link";
 
 import * as Icons from "@saasfly/ui/icons";
@@ -16,12 +15,10 @@ import { TypewriterEffectSmooths } from "~/components/typewriterEffectSmooth";
 import { WobbleCardShow } from "~/components/wobble";
 import { WordReveal } from "~/components/word-reveal";
 import type { Locale } from "~/config/i18n-config";
+import GLOBAL from "~/global";
 import { getDictionary } from "~/lib/get-dictionary";
 import type { Meteor } from "~/types/meteors";
-import { getAccountById } from "../../../../../../src/controllers/userController"
-import GLOBAL from "~/global";
-import { useEffect } from "react";
-
+import { getAccountById } from "../../../../../../src/controllers/userController";
 const meteors_data: Meteor = {
   name: "Contact Us",
   description: "Need Help? Contact Our Support Team.",
@@ -37,15 +34,15 @@ export default async function IndexPage({
   };
 }) {
   const dict = await getDictionary(lang);
-// TRY TO FETCH SOME DATA FROM AMPLIFY
-//   const fetchAccount = async () => {
-//     console.log('getaccountbyiding');
-//     const idd = await getAccountById(GLOBAL.client, "us-east-2:14de523a-02dd-cab7-6cab-298ce2448f37");
-//     console.log('@@@@@@@@@@', idd);
-// };
-// console.log('fetching account')
+  // TRY TO FETCH SOME DATA FROM AMPLIFY
+  //   const fetchAccount = async () => {
+  //     console.log('getaccountbyiding');
+  //     const idd = await getAccountById(GLOBAL.client, "us-east-2:14de523a-02dd-cab7-6cab-298ce2448f37");
+  //     console.log('@@@@@@@@@@', idd);
+  // };
+  // console.log('fetching account')
 
-// fetchAccount();
+  // fetchAccount();
 
 
   return (
@@ -54,10 +51,7 @@ export default async function IndexPage({
         <div className="grid grid-cols-1 gap-10 pb-10 md:pb-40 xl:grid-cols-2">
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 md:pt-28 lg:pt-28 xl:pt-28">
-              <Link
-                href="/download"
-                target="_blank"
-              >
+              <Link href="/download" target="_blank">
                 <DocumentGuide>
                   {dict.marketing.introducing || "Introducing Saasfly"}
                 </DocumentGuide>
@@ -93,7 +87,6 @@ export default async function IndexPage({
                     </span>
                   </ShimmerButton2>
                 </Link>
-                
 
                 {/* <Link href="https://github.com/NetupApp" target="_blank">
                   <div className="flex h-full items-center justify-center">
@@ -114,7 +107,7 @@ export default async function IndexPage({
               </div>
               <div className="mt-4 flex w-full flex-col-reverse items-center justify-between md:flex-row">
                 <XBlogArticle />
-                <div className="w-full md:w-1/2 mb-4 md:ml-4 md:mt-0">
+                <div className="mb-4 w-full md:ml-4 md:mt-0 md:w-1/2">
                   <FeaturesCard />
                 </div>
               </div>
@@ -167,7 +160,7 @@ export default async function IndexPage({
           </div>
         </div>
       </section>
-      <div className="px-10 block md:hidden">
+      <div className="block px-10 md:hidden">
         <Meteorss meteor={meteors_data} />
       </div>
     </>

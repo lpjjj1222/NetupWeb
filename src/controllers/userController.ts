@@ -12,7 +12,7 @@ export const getAccountById = async (client, id) => {
     const getAccountResponse = queryResult?.data?.getAccount;
 
     if (getAccountResponse !== null) {
-      return new ApiResponse(true, 'Success get account by id', getAccountResponse);
+      return new ApiResponse(true, `Success get account by id ${id}`, getAccountResponse);
     }
     return new ApiResponse(false, `Account doesn't exist with id: ${id}`, null);
   } catch (error) {

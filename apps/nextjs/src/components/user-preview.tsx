@@ -5,8 +5,8 @@ import "../styles/preview.css";
 import SwipeableTextMobileStepper from "./user-card";
 
 // 样式定义
-const WrapperContainer = styled.div<{ bgColor: string }>`
-  background-color: ${(props) => props.bgColor};
+const WrapperContainer = styled.div`
+  background-color: ${Colors.white};
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -16,7 +16,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2% 0;
+  padding: 1% 0;
   border-bottom: 1px solid #ccc;
   background-color: ${Colors.pink};
 `;
@@ -58,14 +58,16 @@ const Image = styled.img`
 `;
 
 // 组件定义
-const UserPreview = ({ cardObject }: any) => {
+const UserPreview = ({ userId }: any) => {
   return (
-    <WrapperContainer bgColor={Colors.white}>
+    <WrapperContainer>
       <Header>
         <HeaderText className="font18BlackBold">Account</HeaderText>
       </Header>
       <div style={{display:'flex',backgroundColor:'yellow',justifyContent:'center',alignContent:'center'}}>
-      <SwipeableTextMobileStepper />
+      <SwipeableTextMobileStepper
+        userId = {userId}
+      />
       </div>
 
       {/* <div className="hidden-scrollbar" style={{ height: '100vh', backgroundColor: "blue", overflow:"auto" }}>

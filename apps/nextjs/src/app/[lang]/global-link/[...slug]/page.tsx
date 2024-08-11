@@ -17,14 +17,20 @@ const screenMap = new Map<string, string>([
   ["profile", "profile"],
 ]);
 
+
 export default function Screen() {
   const params = useParams();
   const screen = params?.slug?.[0];
-  const id = params?.slug?.[1];
-  console.log('@@@screen',screen)
-  console.log('@@@id',id)
-
+  let id = params?.slug?.[1];
+  if (id) {
+    id = decodeURIComponent(id);
+  }
+  useEffect(() => {
+    console.log('useEffect in page')
+  }, []);
   return (
-      <UserPreview />
+      <UserPreview
+        userId = {id}
+      />
   );
 }
