@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 
 import "~/styles/globals.css";
 
-import { NextDevtoolsProvider } from "@next-devtools/core";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -100,7 +99,7 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <NextDevtoolsProvider>{children}</NextDevtoolsProvider>
+          {children}
           <Analytics />
           <SpeedInsights />
           <Toaster />

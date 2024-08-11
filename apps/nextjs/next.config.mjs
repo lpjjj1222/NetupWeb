@@ -31,4 +31,4 @@ const config = {
   output: "standalone",
 };
 
-export default withNextDevtools(withMDX()(config));
+export default withMDX()(config);
