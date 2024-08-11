@@ -77,7 +77,7 @@ function SwipeableTextMobileStepper({ userId }) {
   };
 
   return (
-    <Box sx={{ maxHeight: 380, flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
@@ -95,7 +95,6 @@ function SwipeableTextMobileStepper({ userId }) {
                     overflow: "hidden",
                     width: "100%",
                     height: "auto",
-                    maxHeight: 380,
                   }}
                   src={step}
                   alt={"user photo"}
