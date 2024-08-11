@@ -17,6 +17,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1% 0;
+  height: 5%;
   border-bottom: 1px solid #ccc;
 `;
 
@@ -37,11 +38,10 @@ const Footer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0;
   border-top: 1px solid #ccc;
   background-color: ${Colors.white};
   margin-top: auto;
-  height: 10%;
+  height: 6%;
   color: ${Colors.appColorPrimary};
 `;
 
@@ -79,8 +79,8 @@ const UserPreview = ({ userId }: any) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
-            width: "30%",
+            justifyContent: "space-around",
+            width: "28%",
             marginLeft: "10%",
           }}
         >
@@ -94,7 +94,7 @@ const UserPreview = ({ userId }: any) => {
               justifyContent: "center",
             }}
           >
-            <div style={{width: 30, height: 30 }}>
+            <div style={{width: 20, height: 20 }}>
               <Image
                 src={"/images/preview/followPerson.png"}
                 alt="Follow"
@@ -102,8 +102,7 @@ const UserPreview = ({ userId }: any) => {
                 height="100%"
               />
             </div>
-
-            <span style={{color: Colors.greyText}}>Follow</span>
+            <span style={{color: Colors.greyText, fontSize:'0.8rem'}}>Follow</span>
           </Button>
           <Button
             onClick={() => {}}
@@ -115,7 +114,7 @@ const UserPreview = ({ userId }: any) => {
               justifyContent: "center",
             }}
           >
-            <div style={{ width: 25, height: 25 }}>
+            <div style={{ width: 15, height: 15 }}>
               <Image
                 src={"/images/preview/share.png"}
                 alt="Share"
@@ -123,14 +122,14 @@ const UserPreview = ({ userId }: any) => {
                 height="100%"
               />
             </div>
-            <span style={{color: Colors.greyText}}>Share</span>
+            <span style={{color: Colors.greyText,fontSize:'0.8rem'}}>Share</span>
           </Button>
         </div>
         <Button
           className="gradient-button"
           onClick={() => {}}
           style={{
-            width: "45%",
+            width: "50%",
             marginRight: "2%",
             display: "flex",
             flexDirection: "row",

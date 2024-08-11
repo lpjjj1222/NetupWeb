@@ -42,6 +42,8 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 function SwipeableTextMobileStepper({ userId }) {
   const [targetUserImages, setTargetUserImages] = useState<string[]>([]);
+  const [targetUserName, setTargetUserName] = useState<string>("");
+  const [targetUserProfile, setTargetUserProfile] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true);
   const getPic = async (userId, photoIndexT) => {
     const imagesList: string[] = [];
@@ -66,9 +68,14 @@ function SwipeableTextMobileStepper({ userId }) {
       try {
         const response = await getAccountById(GLOBAL.client, userId);
         const userAccount = response?.data;
+        const userName = userAccount?.userName;
         const photoIndexList = userAccount?.userProfile?.photoIndex;
+        const userProfile = userAccount?.userProfile;
+        console.log('@@@@@@@@userProfile', userProfile);
         const images = await getPic(userId, photoIndexList)
         setTargetUserImages(images);
+        setTargetUserProfile(userProfile);
+        setTargetUserName(userName);
       } catch (error) {
         console.log('Error fetching data:', error);
       } finally {
@@ -87,7 +94,7 @@ function SwipeableTextMobileStepper({ userId }) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, position:'relative' }}>
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
@@ -118,20 +125,21 @@ function SwipeableTextMobileStepper({ userId }) {
           </div>
         )}
       </AutoPlaySwipeableViews>
-      {/* <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button size="small" disabled={true}></Button>
-        }
-        backButton={
-          <Button
-            size="small"
-            disabled={true}
-          ></Button>
-        }
-      /> */}
+      <Box sx={{ display: "flex",
+         justifyContent: "center",
+          position:'absolute',
+          bottom:0,
+          left:0,
+          zIndex:2,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          width:'100%',
+          height:'20%',
+          }}>
+        <div>
+          username: {targetUserName}
+        </div>
+      </Box>
+
     </Box>
   );
 }
