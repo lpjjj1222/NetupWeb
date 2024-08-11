@@ -18,7 +18,6 @@ const Header = styled.div`
   justify-content: center;
   padding: 1% 0;
   border-bottom: 1px solid #ccc;
-  background-color: ${Colors.pink};
 `;
 
 const HeaderText = styled.h1`
@@ -64,7 +63,7 @@ const UserPreview = ({ userId }: any) => {
       <Header>
         <HeaderText className="font18BlackBold">Account</HeaderText>
       </Header>
-      <div style={{display:'flex',backgroundColor:'yellow',justifyContent:'center',alignContent:'center'}}>
+      <div style={{display:'flex',justifyContent:'center',alignContent:'center'}}>
       <SwipeableTextMobileStepper
         userId = {userId}
       />

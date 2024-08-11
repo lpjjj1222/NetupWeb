@@ -10,12 +10,14 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { array } from "zod";
+import { array, set } from "zod";
 
 import GLOBAL from "~/global";
 import { userProfileImagePrefix } from "../../../../src/controllers/formatConvert";
 import { getAccountById } from "../../../../src/controllers/userController";
 import { downloadUserImagesFromS3 } from "../../../../src/controllers/utils";
+import { ClipLoader } from "react-spinners";
+import Colors from "~/styles/Colors";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -40,6 +42,7 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 function SwipeableTextMobileStepper({ userId }) {
   const [targetUserImages, setTargetUserImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const getPic = async (userId, photoIndexT) => {
     const imagesList: string[] = [];
     for (var photoIndex in photoIndexT) {
@@ -60,11 +63,18 @@ function SwipeableTextMobileStepper({ userId }) {
 
   useEffect(() => {
     const fetchAccount = async () => {
-      const response = await getAccountById(GLOBAL.client, userId);
-      const userAccount = response?.data;
-      const photoIndexList = userAccount?.userProfile?.photoIndex;
-      const images = await getPic(userId, photoIndexList)
-      setTargetUserImages(images);
+      try {
+        const response = await getAccountById(GLOBAL.client, userId);
+        const userAccount = response?.data;
+        const photoIndexList = userAccount?.userProfile?.photoIndex;
+        const images = await getPic(userId, photoIndexList)
+        setTargetUserImages(images);
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+
     };
     fetchAccount();
   }, []);
@@ -84,7 +94,7 @@ function SwipeableTextMobileStepper({ userId }) {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {targetUserImages.length > 0 ? (
+        {!loading ? (
           targetUserImages.map((step, index) => (
             <div key={index}>
               {
@@ -103,7 +113,9 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
           ))
         ) : (
-          <p>loading...</p>
+          <div style={{textAlign:'center'}}>
+            <ClipLoader color={Colors.gray7C} loading={loading} size={10} />
+          </div>
         )}
       </AutoPlaySwipeableViews>
       {/* <MobileStepper
