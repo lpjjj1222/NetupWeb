@@ -1,5 +1,5 @@
-import { getAccount } from '../graphql/queries'; // 确保路径正确
-import { ApiResponse } from '../domainModels/ApiResponse'; // 确保路径正确
+import { getAccount } from '../graphql/queries';
+import { ApiResponse } from '../domainModels/ApiResponse';
 
 export const getAccountById = async (client, id) => {
   console.log('userController - getAccountById: id: ', id);

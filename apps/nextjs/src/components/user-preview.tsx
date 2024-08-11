@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Colors from "../styles/Colors";
 import "../styles/preview.css";
 import SwipeableTextMobileStepper from "./user-card";
+import { useEffect } from "react";
 
 // 样式定义
 const WrapperContainer = styled.div`

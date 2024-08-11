@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import UserPreview from "~/components/user-preview";
+import EventPreview from "~/components/event-preview";
 
 const localLinkPrefix = "netup://global-link";
 
@@ -32,5 +33,6 @@ export default function Screen() {
       <UserPreview
         userId = {id}
       />
+      // <EventPreview/>
   );
 }
