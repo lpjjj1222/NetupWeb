@@ -65,12 +65,12 @@ const UserPreview = ({ userId }: any) => {
   const link = `netup://global-link/user/${userId}`;
   return (
     <WrapperContainer>
-      <button>
-        <a href={link}>GO</a>
-      </button>
       <Header>
         <HeaderText className="font18BlackBold">Account</HeaderText>
       </Header>
+      <button style={{backgroundColor:'pink'}}>
+        <a href={link}>GO</a>
+      </button>
       <div style={{display:'flex',justifyContent:'center',alignContent:'center'}}>
       <SwipeableTextMobileStepper
         userId = {userId}
@@ -81,6 +81,7 @@ const UserPreview = ({ userId }: any) => {
         <div style={{backgroundColor:"pink", height:'200%'}}>ddd</div>
         ccccccc
       </div> */}
+
 
       <Footer>
         <div
