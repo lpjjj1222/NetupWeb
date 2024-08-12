@@ -43,7 +43,7 @@ const Footer = styled.div`
   background-color: ${Colors.white};
   position: fixed;
   bottom: 0;
-  height: 6%;
+  height: 8%;
   width: 100%;
   color: ${Colors.appColorPrimary};
   padding: 1% 0;
@@ -62,8 +62,12 @@ const Image = styled.img`
 
 // 组件定义
 const UserPreview = ({ userId }: any) => {
+  const link = `netup://global-link/user/${userId}`;
   return (
     <WrapperContainer>
+      <button>
+        <a href={link}>GO</a>
+      </button>
       <Header>
         <HeaderText className="font18BlackBold">Account</HeaderText>
       </Header>
@@ -152,6 +156,7 @@ const UserPreview = ({ userId }: any) => {
         </Button>
       </Footer>
     </WrapperContainer>
+
   );
 };
 

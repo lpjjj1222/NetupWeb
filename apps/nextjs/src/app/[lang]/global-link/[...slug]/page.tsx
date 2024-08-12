@@ -26,9 +26,6 @@ export default function Screen() {
   if (id) {
     id = decodeURIComponent(id);
   }
-  useEffect(() => {
-    console.log('useEffect in page')
-  }, []);
   return (
       <UserPreview
         userId = {id}
