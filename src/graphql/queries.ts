@@ -200,6 +200,24 @@ export const getAccount = /* GraphQL */ `query GetAccount($id: ID!) {
     email
     userName
     userProfile {
+      company {
+        id
+        companyName
+        __typename
+      }
+      location {
+        address
+        city
+        state
+        country
+        zipCode
+        coordinates {
+          lat
+          lon
+          __typename
+        }
+        __typename
+      }
       title
       industry
       language

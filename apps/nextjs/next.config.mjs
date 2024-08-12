@@ -1,4 +1,5 @@
 // @ts-check
+import { fabClasses } from "@mui/material";
 import "./src/env.mjs";
 
 import { withNextDevtools } from "@next-devtools/core/plugin";
@@ -9,7 +10,7 @@ import withMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@saasfly/api",
