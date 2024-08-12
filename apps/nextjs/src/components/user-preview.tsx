@@ -17,8 +17,8 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1% 0;
-  height: 5%;
+  padding: 2% 0;
+  height: 100px;
   border-bottom: 1px solid #ccc;
 `;
 
@@ -41,9 +41,12 @@ const Footer = styled.div`
   justify-content: space-between;
   border-top: 1px solid #ccc;
   background-color: ${Colors.white};
-  margin-top: auto;
+  position: fixed;
+  bottom: 0;
   height: 6%;
+  width: 100%;
   color: ${Colors.appColorPrimary};
+  padding: 1% 0;
 `;
 
 const Button = styled.button`

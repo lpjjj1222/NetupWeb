@@ -136,7 +136,8 @@ function SwipeableTextMobileStepper({ userId }) {
                 zIndex: 2,
                 backgroundColor: "rgba(0,0,0,0.5)",
                 width: "100%",
-                height: "20%",
+                height: "26%",
+
               }}
             >
               <div
@@ -247,7 +248,7 @@ function SwipeableTextMobileStepper({ userId }) {
               marginRight: "2%",
               paddingRight: "2%",
               paddingLeft: "2%",
-              fontWeight: "300",
+              fontWeight: "600",
               fontSize: "0.9rem"
             }}>
               {targetUserProfile.location.city}, {targetUserProfile.location.state}
@@ -417,7 +418,7 @@ function SwipeableTextMobileStepper({ userId }) {
           }}>
             <div 
             style={{
-              width:"25%",
+              width:"30%",
               height:"20%",
               border: "1px solid",
               borderColor: Colors?.borderColor6EA,
@@ -428,7 +429,7 @@ function SwipeableTextMobileStepper({ userId }) {
               padding: "0% 2%",
               overflow: "hidden",
               }}>
-                <img src={"/images/preview/gender.png"} width="30%" height="auto" />
+                <img src={"/images/preview/gender.png"} width="25px" height="25px" />
                 <div style={{
                   display:"flex",
                   flexDirection: "column",
@@ -451,7 +452,7 @@ function SwipeableTextMobileStepper({ userId }) {
           {/* Lineview */}
           <Box style={{ backgroundColor: "#DADADA", height: "0.1vh", width:"100%" }}></Box>
           {/* report */}
-          <div style={{textAlign:'center'}}>
+          <div style={{textAlign:'center', marginBottom:'60px'}}>
             <div style={{
               display:'flex',
               flexDirection:'column',
@@ -459,7 +460,7 @@ function SwipeableTextMobileStepper({ userId }) {
               alignItems:'center',
               padding: "2% 10%",
             }}>
-              <img src={"/images/preview/reportIconNew.png"} width="5%" height="auto" />
+              <img src={"/images/preview/reportIconNew.png"} width="25px" height="25px" />
               <div
               style={{
                 fontSize: "0.8rem",
@@ -470,12 +471,6 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
 
           </div>
-
-
-          
-
-          
-
         </Box>
       ) : (
         <ClipLoader
