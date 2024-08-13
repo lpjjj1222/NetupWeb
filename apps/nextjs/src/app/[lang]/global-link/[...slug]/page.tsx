@@ -27,9 +27,9 @@ export default function Screen() {
     id = decodeURIComponent(id);
   }
   return (
-      // <UserPreview
-      //   userId = {id}
-      // />
-      <EventPreview/>
+      <UserPreview
+        userId = {id}
+      />
+      // <EventPreview/>
   );
 }
