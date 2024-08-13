@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Colors from "../styles/Colors";
 import "../styles/preview.css";
-import { M_PLUS_1, Rowdies } from "next/font/google";
 import { GENDER, INDUSTRIES, INTENTIONS, LANGUAGE } from "../enum";
 
 const WrapperContainer = styled.div<{ bgColor: string }>`
