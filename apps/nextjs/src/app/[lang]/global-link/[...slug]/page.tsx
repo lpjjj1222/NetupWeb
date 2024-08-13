@@ -26,10 +26,17 @@ export default function Screen() {
   if (id) {
     id = decodeURIComponent(id);
   }
-  return (
+  if (screen === "user"){
+    return (
       <UserPreview
         userId = {id}
       />
-      // <EventPreview/>
-  );
+    )}
+  else if (screen === "event"){
+    return (
+      <EventPreview
+        eventId = {id}
+      />
+    );
+  }
 }
