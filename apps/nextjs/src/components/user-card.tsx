@@ -34,7 +34,6 @@ const tagstyles: React.CSSProperties[] = [
   { backgroundColor: "#B0E0E6", color: "#3B9C9C" },
 ];
 
-
 function SwipeableTextMobileStepper({ userId }) {
   const [targetUserImages, setTargetUserImages] = useState<string[]>([]);
   const [targetUserName, setTargetUserName] = useState<string>("");
@@ -81,8 +80,10 @@ function SwipeableTextMobileStepper({ userId }) {
         setTargetUserName(userName);
         setFollowerCount(followerInfo.data.length);
         setFollowingCount(followingInfo.data.length);
-        const industry = INDUSTRIES.find((item) => item.enum === userProfile.industry);
-        const gender = GENDER.find((item)=> item.enum === userProfile.gender);
+        const industry = INDUSTRIES.find(
+          (item) => item.enum === userProfile.industry,
+        );
+        const gender = GENDER.find((item) => item.enum === userProfile.gender);
         setIndustry(industry?.itemT!);
         setGender(gender?.label!);
       } catch (error) {
@@ -101,7 +102,7 @@ function SwipeableTextMobileStepper({ userId }) {
   };
 
   return (
-    <Box sx={{backgroundColor:'white'}}>
+    <Box sx={{ backgroundColor: "white" }}>
       {!loading ? (
         <Box>
           {/* Carousel */}
@@ -139,7 +140,6 @@ function SwipeableTextMobileStepper({ userId }) {
                 backgroundColor: "rgba(0,0,0,0.5)",
                 width: "100%",
                 height: "26%",
-
               }}
             >
               <div
@@ -183,7 +183,13 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
           </div>
           {/* Lineview */}
-          <Box style={{ backgroundColor: "#DADADA", height: "1.2vh", width:"100%" }}></Box>
+          <Box
+            style={{
+              backgroundColor: "#DADADA",
+              height: "1.2vh",
+              width: "100%",
+            }}
+          ></Box>
           {/* Intentions */}
           <div style={{ padding: "2% 10%" }}>
             <div
@@ -197,31 +203,34 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
           </div>
           <div
-          style={{ 
-            padding: "0 10%",
-            display: "flex",
-            gap: "2%",
-            flexWrap: "wrap"
-          }}
+            style={{
+              padding: "0 10%",
+              display: "flex",
+              gap: "2%",
+              flexWrap: "wrap",
+            }}
           >
             {targetUserProfile.intention.map((inte, index) => {
               const intention = INTENTIONS.find((item) => item.enum === inte);
               const label = intention?.itemT;
               const tagStyle = tagstyles[index % tagstyles.length];
               return (
-                <span key={index} style={{
-                  backgroundColor: tagStyle.backgroundColor,
-                  color: tagStyle.color,
-                  borderColor: tagStyle.color,
-                  border: "1px solid",
-                  borderRadius: "4px",
-                  marginRight: "2%",
-                  marginBottom: "2%",
-                  paddingRight: "2%",
-                  paddingLeft: "2%",
-                  fontWeight: "500",
-                  fontSize: "0.8rem"
-                }}>
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: tagStyle.backgroundColor,
+                    color: tagStyle.color,
+                    borderColor: tagStyle.color,
+                    border: "1px solid",
+                    borderRadius: "4px",
+                    marginRight: "2%",
+                    marginBottom: "2%",
+                    paddingRight: "2%",
+                    paddingLeft: "2%",
+                    fontWeight: "500",
+                    fontSize: "0.8rem",
+                  }}
+                >
                   {label}
                 </span>
               );
@@ -239,21 +248,22 @@ function SwipeableTextMobileStepper({ userId }) {
               Location
             </div>
           </div>
-          <div
-          style={{ padding: "0 10%"}}
-          >
-            <span style={{
-              color: Colors.black,
-              borderColor: Colors?.borderColor6EA,
-              border: "0.2px solid",
-              borderRadius: "4px",
-              marginRight: "2%",
-              paddingRight: "2%",
-              paddingLeft: "2%",
-              fontWeight: "600",
-              fontSize: "0.9rem"
-            }}>
-              {targetUserProfile.location.city}, {targetUserProfile.location.state}
+          <div style={{ padding: "0 10%" }}>
+            <span
+              style={{
+                color: Colors.black,
+                borderColor: Colors?.borderColor6EA,
+                border: "0.2px solid",
+                borderRadius: "4px",
+                marginRight: "2%",
+                paddingRight: "2%",
+                paddingLeft: "2%",
+                fontWeight: "600",
+                fontSize: "0.9rem",
+              }}
+            >
+              {targetUserProfile.location.city},{" "}
+              {targetUserProfile.location.state}
             </span>
           </div>
           {/* My Industry */}
@@ -268,23 +278,22 @@ function SwipeableTextMobileStepper({ userId }) {
               My industry
             </div>
           </div>
-          <div
-          style={{ padding: "0 10%"}}
-          >
-            <span style={{
-              color: Colors.black,
-              borderColor: Colors?.borderColor6EA,
-              border: "0.2px solid",
-              borderRadius: "4px",
-              marginRight: "2%",
-              paddingRight: "2%",
-              paddingLeft: "2%",
-              fontWeight: "300",
-              fontSize: "0.9rem"
-            }}>
+          <div style={{ padding: "0 10%" }}>
+            <span
+              style={{
+                color: Colors.black,
+                borderColor: Colors?.borderColor6EA,
+                border: "0.2px solid",
+                borderRadius: "4px",
+                marginRight: "2%",
+                paddingRight: "2%",
+                paddingLeft: "2%",
+                fontWeight: "300",
+                fontSize: "0.9rem",
+              }}
+            >
               {industry}
             </span>
-    
           </div>
           {/* Language */}
           <div style={{ padding: "2% 10%" }}>
@@ -298,34 +307,41 @@ function SwipeableTextMobileStepper({ userId }) {
               Languages
             </div>
           </div>
-          <div
-          style={{ padding: "0 10%"}}
-          >
+          <div style={{ padding: "0 10%" }}>
             {targetUserProfile.language.map((lang, index) => {
               const language = LANGUAGE.find((item) => item.enum === lang);
               const label = language?.label;
               const tagStyle = tagstyles[(index + 4) % tagstyles.length];
               return (
-                <span key={index} style={{
-                  backgroundColor: tagStyle.backgroundColor,
-                  color: tagStyle.color,
-                  borderColor: tagStyle.color,
-                  border: "0.3px solid",
-                  borderRadius: "4px",
-                  marginRight: "2%",
-                  paddingRight: "2%",
-                  paddingLeft: "2%",
-                  fontWeight: "500",
-                  fontSize: "0.8rem"
-                }}>
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: tagStyle.backgroundColor,
+                    color: tagStyle.color,
+                    borderColor: tagStyle.color,
+                    border: "0.3px solid",
+                    borderRadius: "4px",
+                    marginRight: "2%",
+                    paddingRight: "2%",
+                    paddingLeft: "2%",
+                    fontWeight: "500",
+                    fontSize: "0.8rem",
+                  }}
+                >
                   {label}
                 </span>
               );
             })}
           </div>
-          <div style={{height:"1.5vh"}}></div>
+          <div style={{ height: "1.5vh" }}></div>
           {/* Lineview */}
-          <Box style={{ backgroundColor: "#DADADA", height: "1.2vh", width:"100%" }}></Box>
+          <Box
+            style={{
+              backgroundColor: "#DADADA",
+              height: "1.2vh",
+              width: "100%",
+            }}
+          ></Box>
           {/* Interested industries */}
           <div style={{ padding: "2% 10%" }}>
             <div
@@ -339,30 +355,32 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
           </div>
           <div
-          style={{ 
-            padding: "0 10%",
-            display: "flex",
-            gap: "2%",
-            flexWrap: "wrap"
-
-          }}
+            style={{
+              padding: "0 10%",
+              display: "flex",
+              gap: "2%",
+              flexWrap: "wrap",
+            }}
           >
             {targetUserProfile.interestedIndustries.map((industry, index) => {
               const indu = INDUSTRIES.find((item) => item.enum === industry);
               const label = indu?.itemT;
               return (
-                <span key={index} style={{
-                  color: Colors.black,
-                  borderColor: Colors?.borderColor6EA,
-                  border: "0.2px solid",
-                  borderRadius: "4px",
-                  marginBottom: "1%",
-                  marginRight: "2%",
-                  paddingRight: "2%",
-                  paddingLeft: "2%",
-                  fontWeight: "300",
-                  fontSize: "0.8rem"
-                }}>
+                <span
+                  key={index}
+                  style={{
+                    color: Colors.black,
+                    borderColor: Colors?.borderColor6EA,
+                    border: "0.2px solid",
+                    borderRadius: "4px",
+                    marginBottom: "1%",
+                    marginRight: "2%",
+                    paddingRight: "2%",
+                    paddingLeft: "2%",
+                    fontWeight: "300",
+                    fontSize: "0.8rem",
+                  }}
+                >
                   {label}
                 </span>
               );
@@ -381,111 +399,155 @@ function SwipeableTextMobileStepper({ userId }) {
             </div>
           </div>
           <div
-          style={{ 
-            padding: "0 10%",
-            display: "flex",
-            gap: "2%",
-            flexWrap: "wrap"
-          }}
+            style={{
+              padding: "0 10%",
+              display: "flex",
+              gap: "2%",
+              flexWrap: "wrap",
+            }}
           >
             {targetUserProfile.expertise.map((exp, index) => {
               const tagStyle = tagstyles[index % tagstyles.length];
               return (
-                <span key={index} style={{
-                  backgroundColor: tagStyle.backgroundColor,
-                  color: tagStyle.color,
-                  borderColor: tagStyle.color,
-                  border: "1px solid",
-                  borderRadius: "4px",
-                  marginRight: "2%",
-                  marginBottom: "2%",
-                  paddingRight: "2%",
-                  paddingLeft: "2%",
-                  fontWeight: "500",
-                  fontSize: "0.8rem"
-                }}>
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: tagStyle.backgroundColor,
+                    color: tagStyle.color,
+                    borderColor: tagStyle.color,
+                    border: "1px solid",
+                    borderRadius: "4px",
+                    marginRight: "2%",
+                    marginBottom: "2%",
+                    paddingRight: "2%",
+                    paddingLeft: "2%",
+                    fontWeight: "500",
+                    fontSize: "0.8rem",
+                  }}
+                >
                   {exp}
                 </span>
               );
             })}
           </div>
           {/* Lineview */}
-          <Box style={{ backgroundColor: "#DADADA", height: "1.2vh", width:"100%", marginTop:"4%"}}></Box>
-          {/* gender */}
-          <div style={{
-            display: "flex",
-            padding: "2% 10%",
-            marginBottom: "2%",
-            marginTop: "2%",
-          }}>
-            <div 
+          <Box
             style={{
-              maxWidth:"40%",
-              height:"20%",
-              border: "1px solid",
-              borderColor: Colors?.borderColor6EA,
-              borderRadius: "4px",
+              backgroundColor: "#DADADA",
+              height: "1.2vh",
+              width: "100%",
+              marginTop: "4%",
+            }}
+          ></Box>
+          {/* gender */}
+          <div
+            style={{
               display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              padding: "0% 2%",
-              overflow: "hidden",
-              }}>
-                <img src={"/images/preview/gender.png"} width="25px" height="25px" />
-                <div style={{
-                  display:"flex",
+              padding: "2% 10%",
+              marginBottom: "2%",
+              marginTop: "2%",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "40%",
+                height: "20%",
+                border: "1px solid",
+                borderColor: Colors?.borderColor6EA,
+                borderRadius: "4px",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                padding: "0% 2%",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={"/images/preview/gender.png"}
+                width="25px"
+                height="25px"
+              />
+              <div
+                style={{
+                  display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   fontSize: "0.8rem",
                   color: Colors.black,
-
-
-                  }}>
-                    <div style={{fontWeight:'bold', fontSize:'0.9rem'}}>Gender</div>
-                    <div>{gender}</div>
-
+                }}
+              >
+                <div style={{ fontWeight: "bold", fontSize: "0.9rem" }}>
+                  Gender
                 </div>
-
-              
+                <div>{gender}</div>
+              </div>
             </div>
-
           </div>
           {/* Lineview */}
-          <Box style={{ backgroundColor: "#DADADA", height: "0.1vh", width:"100%" }}></Box>
+          <Box
+            style={{
+              backgroundColor: "#DADADA",
+              height: "0.1vh",
+              width: "100%",
+            }}
+          ></Box>
           {/* report */}
-          <div 
-          style={{display:'flex', justifyContent:'center', alignContent:'center', marginBottom:'150px'}}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              marginBottom: "150px",
+            }}
           >
-            <button style={{
-              display:'flex',
-              flexDirection:'column',
-              justifyContent:'center',
-              alignItems:'center',
-              padding: "2% 10%",
-            }}
-            onClick={()=>{
-              window.location.href = link
-            }}
-            >
-              <img src={"/images/preview/reportIconNew.png"} width="25px" height="25px" />
-              <div
+            <button
               style={{
-                fontSize: "0.8rem",
-                color: Colors.black,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "2% 10%",
               }}
-              >Report</div>
-
+              onClick={() => {
+                window.location.href = link;
+              }}
+            >
+              <img
+                src={"/images/preview/reportIconNew.png"}
+                width="25px"
+                height="25px"
+              />
+              <div
+                style={{
+                  fontSize: "0.8rem",
+                  color: Colors.black,
+                }}
+              >
+                Report
+              </div>
             </button>
-
           </div>
         </Box>
       ) : (
-        <ClipLoader
-          color={Colors.appColorPrimary}
-          loading={loading}
-          size={50}
-        />
+        <div
+          style={{
+            width: '100vh',
+            height:'100vh',
+            margin: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+
+
+          }}
+        >
+          <ClipLoader
+            color={Colors.appColorPrimary}
+            loading={loading}
+            size={50}
+          />
+        </div>
       )}
     </Box>
   );
