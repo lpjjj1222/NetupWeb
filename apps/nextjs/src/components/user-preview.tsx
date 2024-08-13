@@ -182,6 +182,9 @@ const UserPreview = ({ userId }: any) => {
           alignItems: "space-around",
           padding: "0 15px",
         }}
+        onClick={() => {
+          window.location.href = link;
+        }}
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
           <span>Open in App</span>
