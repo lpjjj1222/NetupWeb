@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
@@ -35,6 +34,7 @@ const tagstyles: React.CSSProperties[] = [
   { backgroundColor: "#B0E0E6", color: "#3B9C9C" },
 ];
 
+
 function SwipeableTextMobileStepper({ userId }) {
   const [targetUserImages, setTargetUserImages] = useState<string[]>([]);
   const [targetUserName, setTargetUserName] = useState<string>("");
@@ -61,6 +61,8 @@ function SwipeableTextMobileStepper({ userId }) {
     }
     return imagesList;
   };
+
+  const link = `netup://global-link/user/${userId}`;
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -418,7 +420,7 @@ function SwipeableTextMobileStepper({ userId }) {
           }}>
             <div 
             style={{
-              width:"30%",
+              maxWidth:"40%",
               height:"20%",
               border: "1px solid",
               borderColor: Colors?.borderColor6EA,
@@ -452,14 +454,20 @@ function SwipeableTextMobileStepper({ userId }) {
           {/* Lineview */}
           <Box style={{ backgroundColor: "#DADADA", height: "0.1vh", width:"100%" }}></Box>
           {/* report */}
-          <div style={{textAlign:'center', marginBottom:'60px'}}>
-            <div style={{
+          <div 
+          style={{display:'flex', justifyContent:'center', alignContent:'center', marginBottom:'150px'}}
+          >
+            <button style={{
               display:'flex',
               flexDirection:'column',
               justifyContent:'center',
               alignItems:'center',
               padding: "2% 10%",
-            }}>
+            }}
+            onClick={()=>{
+              window.location.href = link
+            }}
+            >
               <img src={"/images/preview/reportIconNew.png"} width="25px" height="25px" />
               <div
               style={{
@@ -468,7 +476,7 @@ function SwipeableTextMobileStepper({ userId }) {
               }}
               >Report</div>
 
-            </div>
+            </button>
 
           </div>
         </Box>

@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Colors from "../styles/Colors";
-import "../styles/preview.css";
-import SwipeableTextMobileStepper from "./user-card";
-import { useEffect } from "react";
 
-// 样式定义
+import Colors from "../styles/Colors";
+
+import "../styles/preview.css";
+
+import SwipeableTextMobileStepper from "./user-card";
+
 const WrapperContainer = styled.div`
   background-color: ${Colors.white};
   display: flex;
@@ -60,7 +61,6 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-// 组件定义
 const UserPreview = ({ userId }: any) => {
   const link = `netup://global-link/user/${userId}`;
   return (
@@ -68,21 +68,15 @@ const UserPreview = ({ userId }: any) => {
       <Header>
         <HeaderText className="font18BlackBold">Account</HeaderText>
       </Header>
-      <button style={{backgroundColor:'pink'}}>
-        <a href={link}>GO</a>
-      </button>
-      <div style={{display:'flex',justifyContent:'center',alignContent:'center'}}>
-      <SwipeableTextMobileStepper
-        userId = {userId}
-      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <SwipeableTextMobileStepper userId={userId} />
       </div>
-
-      {/* <div className="hidden-scrollbar" style={{ height: '100vh', backgroundColor: "blue", overflow:"auto" }}>
-        <div style={{backgroundColor:"pink", height:'200%'}}>ddd</div>
-        ccccccc
-      </div> */}
-
-
       <Footer>
         <div
           style={{
@@ -94,7 +88,9 @@ const UserPreview = ({ userId }: any) => {
           }}
         >
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              window.location.href = link;
+            }}
             style={{
               marginRight: 10,
               display: "flex",
@@ -103,7 +99,7 @@ const UserPreview = ({ userId }: any) => {
               justifyContent: "center",
             }}
           >
-            <div style={{width: 20, height: 20 }}>
+            <div style={{ width: 20, height: 20 }}>
               <Image
                 src={"/images/preview/followPerson.png"}
                 alt="Follow"
@@ -111,10 +107,14 @@ const UserPreview = ({ userId }: any) => {
                 height="100%"
               />
             </div>
-            <span style={{color: Colors.greyText, fontSize:'0.8rem'}}>Follow</span>
+            <span style={{ color: Colors.greyText, fontSize: "0.8rem" }}>
+              Follow
+            </span>
           </Button>
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              window.location.href = link;
+            }}
             style={{
               marginRight: 10,
               display: "flex",
@@ -131,15 +131,19 @@ const UserPreview = ({ userId }: any) => {
                 height="100%"
               />
             </div>
-            <span style={{color: Colors.greyText,fontSize:'0.8rem'}}>Share</span>
+            <span style={{ color: Colors.greyText, fontSize: "0.8rem" }}>
+              Share
+            </span>
           </Button>
         </div>
         <Button
           className="gradient-button"
-          onClick={() => {}}
+          onClick={() => {
+            window.location.href = link;
+          }}
           style={{
             width: "50%",
-            marginRight: "2%",
+            marginRight: "4%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -156,8 +160,34 @@ const UserPreview = ({ userId }: any) => {
           Message
         </Button>
       </Footer>
+      {/* Open in Netup App */}
+      <div 
+      style={{
+        padding: "8px 0",
+        backgroundColor: Colors.appColorPrimary,
+        color: Colors.white,
+        fontSize: "1.2rem",
+        fontWeight: "500",
+        position: "fixed",
+        bottom: 100,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 20,
+        width: "48%",
+      }}>
+        <button 
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "space-around",
+          padding: "0 15px",
+        }}
+        >
+          <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
+          <span>Open in App</span>
+        </button>
+      </div>
     </WrapperContainer>
-
   );
 };
 
