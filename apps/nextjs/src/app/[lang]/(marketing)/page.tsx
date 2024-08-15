@@ -47,7 +47,7 @@ export default async function IndexPage({
 
   return (
     <>
-      <section className="w-full px-8 sm:px-20 md:px-48 xl:h-[80vh] xl:px-20 2xl:px-40">
+      <section className="w-full px-8 sm:px-20 md:px-48 md:mb-0 xl:h-[80vh] xl:px-20 2xl:px-40">
         <div className="grid grid-cols-1 gap-10 pb-10 md:pb-40 xl:grid-cols-2">
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 md:pt-28 lg:pt-28 xl:pt-28">
@@ -116,9 +116,9 @@ export default async function IndexPage({
         </div>
       </section>
 
-      <section className="hidden h-[100vh] w-full sm:mt-24 xl:block">
+      <section className="hidden xl:h-[100vh] w-full sm:mt-24 md:mt-0 md:block">
         <div className="flex h-full w-full justify-between px-[100px]">
-          <div className="flex w-[60%] flex-col pr-4 pt-60">
+          <div className="flex w-[60%] flex-col pr-4 pt-60 md:pt-0 xl:pt-60">
             <WobbleCardShow />
           </div>
           <div className="h-full w-[40%]">
@@ -139,8 +139,8 @@ export default async function IndexPage({
         </div>
       </section>
 
-      <section className="w-full px-8 xl:hidden">
-        <Questions />
+      <section className="w-full px-8 md: mt-20 xl:hidden" >
+          <Questions />        
       </section>
 
       <section className="w-full px-8 pt-10 sm:px-0 sm:pt-0 md:px-0 md:pt-0 xl:px-0 xl:pt-0">
