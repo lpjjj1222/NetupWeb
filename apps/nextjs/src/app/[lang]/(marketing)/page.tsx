@@ -116,12 +116,12 @@ export default async function IndexPage({
         </div>
       </section>
 
-      <section className="hidden xl:h-[100vh] w-full sm:mt-24 md:mt-0 md:block">
-        <div className="flex h-full w-full justify-between px-[100px]">
-          <div className="flex w-[60%] flex-col pr-4 pt-60 md:pt-0 xl:pt-60">
+      <section className="xl:h-[100vh] w-full">
+        <div className="flex h-full w-full justify-between px-[20px] md:px-[100px]">
+          <div className="flex w-[100%] md:w-[60%] flex-col pr-4 pt-60 md:pt-0 xl:pt-60">
             <WobbleCardShow />
           </div>
-          <div className="h-full w-[40%]">
+          <div className="hidden h-full w-[40%] md:block">
             <div className="flex flex-col pl-[120px]">
               <WordReveal />
             </div>
