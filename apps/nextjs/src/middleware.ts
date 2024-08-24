@@ -36,6 +36,7 @@ export default async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
+<<<<<<< Updated upstream
 
   // // 检查请求路径是否为 /download 或 /en/download
   // if (pathname === '/download' || pathname === '/en/download') {
@@ -71,6 +72,38 @@ export default async function middleware(request: NextRequest) {
   //     }
   //   }
   // };
+=======
+  // 检查请求路径是否为 /download 或 /en/download
+  if (pathname === '/download' || pathname === '/en/download') {
+    // 执行重定向到指定页面，例如 /new-download
+    return NextResponse.redirect("https://testflight.apple.com/join/QP0AJmDO");
+  }
+
+  // netup.social/global-link/xxx -> netup://global-link/xxx
+  const screenMap = new Map<string, string>([
+    ["home", "home"],
+    ["user", "user"],
+    ["discover", "discover"],
+    ["event", "event"],
+    ["chat", "chat"],
+    ["profile", "profile"],
+  ]
+  );
+
+  const linkPrefix = "netup://global-link/";
+
+  if (pathname.startsWith("/global-link")) {
+    const pathList = pathname.split('/')
+    if (pathList.length > 2 && pathList[2]) {
+      if (screenMap.has(pathList[2])) {
+        // 带id跳转，如：跳netup://global-link/user/id-xxx
+        // 不带id跳转，如：跳netup://global-link/user
+        const suffix = pathList.slice(2).join('/')
+        return NextResponse.redirect(`${linkPrefix}${suffix}`);
+      }
+    }
+  };
+>>>>>>> Stashed changes
 
 
   // Check if there is any supported locale in the pathname
