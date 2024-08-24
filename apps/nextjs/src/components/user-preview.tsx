@@ -6,6 +6,7 @@ import Colors from "../styles/Colors";
 import "../styles/preview.css";
 
 import SwipeableTextMobileStepper from "./user-card";
+import { useEffect } from "react";
 
 const WrapperContainer = styled.div`
   background-color: ${Colors.white};
@@ -63,6 +64,57 @@ const Image = styled.img`
 
 const UserPreview = ({ userId }: any) => {
   const link = `netup://global-link/user/${userId}`;
+  const downloadLink =
+    "https://apps.apple.com/us/app/netup-social/id6478843705";
+
+  let appInstalled = true;
+
+
+  // useEffect(() => {
+  //   console.log('Component mounted');
+
+
+  //   // 创建一个隐藏的 iframe 尝试打开应用
+  //   const iframe = document.createElement('iframe');
+  //   iframe.style.display = 'none';
+  //   document.body.appendChild(iframe);
+
+  //   // 监听 visibilitychange 事件
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === 'hidden') {
+  //       appInstalled = true; // 应用被打开，页面失去焦点
+  //     }
+  //   };
+  //   document.addEventListener('visibilitychange', handleVisibilityChange);
+
+  //   // 监听 blur 事件
+  //   const handleBlur = () => {
+  //     appInstalled = true; // 应用被打开，页面失去焦点
+  //   };
+  //   window.addEventListener('blur', handleBlur);
+
+  //   // 尝试通过 iframe 打开应用
+  //   iframe.src = link;
+
+  //   // 设置一个超时，如果页面在短时间内没有失去焦点，认为应用未被打开
+  //   setTimeout(() => {
+  //     document.body.removeChild(iframe); // 移除 iframe
+  //     console.log('appInstalled', appInstalled);
+  //   }, 1000); // 可调整超时时间
+
+  //   // 清理事件监听器
+  //   return () => {
+  //     document.removeEventListener('visibilitychange', handleVisibilityChange);
+  //     window.removeEventListener('blur', handleBlur);
+  //   };
+  // }, []); // 空数组确保只在组件挂载和卸载时运行
+  
+
+
+
+   
+
+
   return (
     <WrapperContainer>
       <Header>
@@ -89,8 +141,12 @@ const UserPreview = ({ userId }: any) => {
         >
           <Button
             onClick={() => {
+              if (appInstalled) {
               window.location.href = link;
-            }}
+            }
+            else {
+              window.location.href = downloadLink;
+            }}}
             style={{
               marginRight: 10,
               display: "flex",
@@ -113,8 +169,12 @@ const UserPreview = ({ userId }: any) => {
           </Button>
           <Button
             onClick={() => {
+              if (appInstalled) {
               window.location.href = link;
-            }}
+            }
+            else {
+              window.location.href = downloadLink;
+            }}}
             style={{
               marginRight: 10,
               display: "flex",
@@ -139,8 +199,13 @@ const UserPreview = ({ userId }: any) => {
         <Button
           className="gradient-button"
           onClick={() => {
+            if (appInstalled) {
             window.location.href = link;
-          }}
+          }
+          else {
+            window.location.href = downloadLink;
+          }}}
+
           style={{
             width: "50%",
             marginRight: "4%",
@@ -161,32 +226,43 @@ const UserPreview = ({ userId }: any) => {
         </Button>
       </Footer>
       {/* Open in Netup App */}
-      <div 
-      style={{
-        padding: "8px 0",
-        backgroundColor: Colors.appColorPrimary,
-        color: Colors.white,
-        fontSize: "1.2rem",
-        fontWeight: "500",
-        position: "fixed",
-        bottom: 100,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        borderRadius: 20,
-        width: "48%",
-      }}>
-        <button 
+      <div
         style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "space-around",
-          padding: "0 15px",
+          padding: "8px 0",
+          backgroundColor: Colors.appColorPrimary,
+          color: Colors.white,
+          fontSize: "1.2rem",
+          fontWeight: "500",
+          position: "fixed",
+          bottom: 100,
+          left: "50%",
+          transform: "translateX(-50%)",
+          borderRadius: 20,
+          width: "48%",
         }}
-        onClick={() => {
-          window.location.href = link;
-        }}
+      >
+        <button
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "space-around",
+            padding: "0 15px",
+          }}
+          onClick={() => {
+            if (appInstalled) {
+            window.location.href = link;
+          }
+          else {
+            window.location.href = downloadLink;
+          }}}
+
         >
-          <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
+          <img
+            src={"/newBigLogo.png"}
+            width="30px"
+            height="30px"
+            style={{ marginRight: "10px" }}
+          />
           <span>Open in App</span>
         </button>
       </div>
