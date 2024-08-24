@@ -5,7 +5,7 @@ import React from "react";
 import { useEffect } from "react";
 
 const navigateTimeout = 2000;
-const publicTestFlightLink = "https://testflight.apple.com/join/QP0AJmDO"
+const publicTestFlightLink = "https://apps.apple.com/us/app/netup-social/id6478843705"
 
 export default function Download() {
     useEffect(() => {
