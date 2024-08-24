@@ -1,0 +1,7 @@
+{
+  "prod": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/peijinglin/.amplify/awscloudformation/nu0fvtbwhw"
+  }
+}

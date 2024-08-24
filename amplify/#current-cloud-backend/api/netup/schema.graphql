@@ -1,0 +1,320 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
+type SupportedDomains @model @auth(rules: [{allow: public}]) {
+  supportedDomains: String @index
+}
+
+# User Related Tables
+type Account @model @searchable @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  email: String @index
+  userName: String @index
+  userProfile: UserProfile
+}
+
+type UserProfile {
+  company: Company
+  title: String
+  location: Location
+  industry: Industry
+  language: [Language]
+  age: Int
+  gender: Gender
+  intention: [Intention]
+  interestedIndustries: [Industry]
+  selfIntroduction: String
+  expertise: [String]
+  photoIndex: [Int]
+}
+
+type Follows @model @auth(rules: [{allow: public}]) {
+  from: ID @index
+  to: ID @index
+}
+
+type Company {
+  id: ID
+  companyName: String
+}
+
+type Location {
+  address: String
+  city: String
+  state: String
+  country: String
+  zipCode: String
+  coordinates: Coordinates
+}
+
+type Coordinates {
+  lat: Float!
+  lon: Float!
+}
+
+enum Language {
+  ENGLISH
+  CHINESE
+  FRENCH
+  SPANISH
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHERS
+  PREFERNOTTOSAY
+}
+
+enum Intention {
+  PEERTOPEER
+  LOOKFORMENTOR
+  MENTOROTHERS
+  HIRING
+  LOOKFORJOBS
+  LEARNOTHERINDUSTRIES
+}
+
+enum Industry {
+  UNIVERSITY
+  INVESTMENTBANKING
+  ASSETMANAGEMENT
+  QUANTTRADING
+  VENTURECAPITAL
+  ACCOUNTING
+  PRODUCTMANAGEMENT
+  SOFTWAREENGINEERING
+  DATASCIENCE
+  ARTIFICIALINTELLIGENCE
+  UIUX
+  ELECTRICALENGINEERING
+  CONSULTING
+  EDUCATION
+  LAW
+  REALESTATE
+  HEALTHCARE
+  ENGINEERING
+  PUBLICSECTOR
+  SUPPLYCHAIN
+  FILMANDART
+  HUMANRESOURCE
+  BIOANDMEDICAL
+  ARCHITECTURE
+  MARKETING
+  ADVERTISING
+  MEDIA
+  OTHERS
+}
+
+# User History Tables
+type SwipeHistory @model @auth(rules: [{allow: public}]) {
+  from: ID
+    @index(
+      name: "byUserAndSwipeType"
+      sortKeyFields: ["swipeType"]
+      queryField: "SwipeHistoryByUserAndSwipeType"
+    )
+  to: ID
+  swipeType: SwipeType
+}
+
+enum SwipeType {
+  DISLIKE
+  CHAT
+  INVITETOEVENT
+}
+
+# Event Related Tables
+type Event @model @searchable @auth(rules: [{allow: public}]) {
+  id: ID! @primaryKey
+  eventName: String
+  hostId: ID @index
+  industries: [Industry]
+  eventType: EventType
+  location: Location
+  eventLink: String
+  startTime: AWSDateTime
+  capacity: Int
+  genders: [Gender]
+  minAge: Int
+  maxAge: Int
+  language: Language
+  description: String
+  privacy: EventPrivacy
+}
+
+enum EventType {
+  COFFEECHAT
+  MEAL
+  ONLINE
+  OTHERS
+}
+
+enum EventPrivacy {
+  PRIVATE
+  PUBLIC
+}
+
+# Users-To-Events Related Tables
+type UsersToEvents @model @auth(rules: [{allow: public}]) {
+  user: ID! @index
+  event: ID @index
+  status: EventStatus
+}
+
+enum EventStatus {
+  INTERESTED
+  ATTENDING
+}
+
+# Report Tables
+type ReportUsers @model @auth(rules: [{allow: public}]) {
+  reportedUser: ID!
+  reporter: ID!
+  reason: String
+  comment: String
+}
+
+type ReportEvents @model @auth(rules: [{allow: public}]) {
+  reportedEvent: ID!
+  reporter: ID!
+  reason: String
+  comment: String
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  AUDIO
+  VIDEO
+}
+
+# [Chat] Message Table
+type Message @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String
+  owner: ID!
+  room: ID!
+    @index(
+      name: "byRoomAndCreatedAt"
+      sortKeyFields: ["createdAt"]
+      queryField: "messageByRoomAndCreatedAt"
+    )
+  createdAt: AWSDateTime
+  type: MessageType
+}
+
+# [Chat] Room Table
+type Room @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  owner: ID!
+  event: ID @index
+  users: [ID]
+  groupChat: Boolean
+  active: Boolean
+  lastMessageID: ID
+}
+
+# [Chat] Users-To-Rooms Related Table
+type UsersToRooms @model @auth(rules: [{allow: public}]) {
+  user: ID! @index
+  room: ID @index
+  groupChat: Boolean
+  unreadCount: Int
+  lastAckMessageId: ID
+}
+
+type LastStartTime @model @auth(rules: [{allow: public}]) {
+  user: ID! @primaryKey
+  lastStartTime: AWSDateTime!
+}
+
+type LastActiveTime @model @auth(rules: [{allow: public}]) {
+  user: ID! @primaryKey
+  lastActiveTime: Int!
+}
+
+type UserDevices @model @auth(rules: [{allow: public}]) {
+  user: ID! @primaryKey
+  deviceToken: String
+}
+
+## TODO
+#type SearchHistory @model {
+#}
+
+enum EventSortBy {
+  DISTANCE
+  STARTTIME
+}
+
+type Query {
+  searchUserByDistance(
+    coordinates: CoordinatesInput!
+    mi: Int
+  ): AccountConnection
+  searchEventByDistance(
+    coordinates: CoordinatesInput!
+    mi: Int
+    skip: Int
+    keyword: String
+    minAge: Int
+    maxAge: Int
+    minCapacity: Int
+    maxCapacity: Int
+    startTime: AWSDateTime
+    endTime: AWSDateTime
+    industries: [Industry]
+    eventType: [EventType]
+    genders: [Gender]
+    language: [Language]
+    sortBy: EventSortBy
+  ): EventConnection
+  searchAccountByScore(
+    language: [String]
+    expertise: String
+    industry: String
+    title: String
+    companyName: String
+    interestedIndustry: [String]
+    intention: [String]
+    latitude: Float
+    longitude: Float
+    filterList: [String]
+  ): AccountConnection
+  searchAccountByString(
+    input: String
+  ): AccountDetailConnection
+}
+
+type Mutation {
+  incrementUnreadCount(
+    userId: ID!
+    roomId: ID!
+  ): UsersToRooms
+  clearUnreadCount(
+    userId: ID!
+    roomId: ID!
+  ): UsersToRooms
+}
+
+input CoordinatesInput {
+  lat: Float!
+  lon: Float!
+}
+
+type AccountConnection {
+  users: [ID]
+  total: Int
+}
+
+type AccountDetailConnection {
+  users: [Account]
+  total: Int
+}
+
+type EventConnection {
+  events: [Event]
+  total: Int
+}

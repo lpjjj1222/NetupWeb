@@ -1,0 +1,11 @@
+#set($users = [])
+$util.log.info("zongyuanzongyuan")
+$util.log.info("Result: $context.result.hits.hits")
+#foreach($entry in $context.result.hits.hits)
+  $util.qr($users.add($entry.get("_source")))
+#end
+
+$util.toJson({
+  "users": $users,
+  "total": $users.size()
+})

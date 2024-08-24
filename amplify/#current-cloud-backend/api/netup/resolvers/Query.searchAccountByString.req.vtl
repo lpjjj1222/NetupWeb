@@ -1,0 +1,21 @@
+#set( $indexPath = "/account/_search" )
+
+#set( $query = {
+    "query_string" : {
+        "query" : "*$ctx.args.input*",
+        "fields" : ["userName", "email"]
+    }
+})
+
+$util.log.info("Query: $query")
+
+{
+  "version": "2017-02-28",
+  "operation": "GET",
+  "path": "$indexPath.toLowerCase()",
+  "params": {
+    "body": {
+      "query": $util.toJson($query)
+    }
+  }
+}

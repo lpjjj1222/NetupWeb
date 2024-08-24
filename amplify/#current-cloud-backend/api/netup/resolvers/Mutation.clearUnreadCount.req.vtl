@@ -1,0 +1,14 @@
+#set($id = "${ctx.args.userId}${ctx.args.roomId}")
+{
+  "version": "2018-05-29",
+  "operation": "UpdateItem",
+  "key": {
+    "id": { "S": "$id" }
+  },
+  "update": {
+    "expression": "SET unreadCount = :zero",
+    "expressionValues": {
+      ":zero": { "N": "0" }
+    }
+  }
+}

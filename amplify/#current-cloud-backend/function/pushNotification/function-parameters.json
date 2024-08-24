@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "analytics": {
+      "netupPinpoint": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

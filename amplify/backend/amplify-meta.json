@@ -1,0 +1,317 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-netup-prod-6caab-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089629276674:role/amplify-netup-prod-6caab-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089629276674:role/amplify-netup-prod-6caab-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-netup-prod-6caab-deployment",
+      "UnauthRoleName": "amplify-netup-prod-6caab-unauthRole",
+      "StackName": "amplify-netup-prod-6caab",
+      "StackId": "arn:aws:cloudformation:us-east-2:089629276674:stack/amplify-netup-prod-6caab/e24d8190-1c01-11ef-a619-06e81b029fdd",
+      "AmplifyAppId": "d21oljwujrdr0z"
+    }
+  },
+  "analytics": {
+    "netupPinpoint": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint",
+      "output": {
+        "appName": "netupPinpoint-prod",
+        "Region": "us-east-2",
+        "Id": "1a7eb89bb25a44878581e9adf6875999"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.279Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+        "logicalId": "analyticsnetupPinpoint"
+      }
+    }
+  },
+  "api": {
+    "netup": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "netupAuth"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authnetupAuth"
+              }
+            },
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2025-06-05T08:15:45.338Z",
+              "apiKeyExpirationDays": 365,
+              "description": "api_key"
+            },
+            "authenticationType": "API_KEY"
+          }
+        },
+        "GraphQLAPIIdOutput": "wr36czp5ozcxvlnohn7rrqgrgq",
+        "GraphQLAPIEndpointOutput": "https://3yeegbmg4jdqjj4nzhvshvf6sq.appsync-api.us-east-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-57cwvaka5rcwnhcw4owoswg6tm"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2024-08-07T23:24:39.283Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apinetup"
+      }
+    },
+    "rest": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "recsys"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pushNotification"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "googleMapApi"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pushNotificationForUsers"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway",
+      "output": {
+        "ApiName": "rest",
+        "RootUrl": "https://f1lrhpzq8h.execute-api.us-east-2.amazonaws.com/prod",
+        "ApiId": "f1lrhpzq8h"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.284Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/api/rest-cloudformation-template.json",
+        "logicalId": "apirest"
+      }
+    }
+  },
+  "auth": {
+    "netupAuth": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 6,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "us-east-2_CsdnkvE5t",
+        "AppClientIDWeb": "45865302orbumgm0n74lum867f",
+        "AppClientID": "26m6f5pshv0lj7ago8ku8buo6h",
+        "IdentityPoolId": "us-east-2:9ff78f72-1f39-4ba4-b56f-bc4bbfd556c4",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-2:089629276674:userpool/us-east-2_CsdnkvE5t",
+        "IdentityPoolName": "netupAuthIdentityPool__prod",
+        "UserPoolName": "netupAuthUserPool"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.284Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/auth/netupAuth-cloudformation-template.json",
+        "logicalId": "authnetupAuth"
+      }
+    }
+  },
+  "function": {
+    "googleMapApi": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::089629276674:role/netupLambdaRole7f07559d-prod",
+        "Region": "us-east-2",
+        "Arn": "arn:aws:lambda:us-east-2:089629276674:function:googleMapApi-prod",
+        "Name": "googleMapApi-prod",
+        "LambdaExecutionRole": "netupLambdaRole7f07559d-prod"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.285Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/function/googleMapApi-cloudformation-template.json",
+        "logicalId": "functiongoogleMapApi"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+        "s3Key": "amplify-builds/googleMapApi-43377965617176384553-build.zip"
+      }
+    },
+    "pushNotification": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Id",
+            "Region"
+          ],
+          "category": "analytics",
+          "resourceName": "netupPinpoint"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::089629276674:role/netupLambdaRole05b576fe-prod",
+        "Region": "us-east-2",
+        "Arn": "arn:aws:lambda:us-east-2:089629276674:function:pushNotification-prod",
+        "Name": "pushNotification-prod",
+        "LambdaExecutionRole": "netupLambdaRole05b576fe-prod"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.286Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/function/pushNotification-cloudformation-template.json",
+        "logicalId": "functionpushNotification"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+        "s3Key": "amplify-builds/pushNotification-57755a32414179727174-build.zip"
+      }
+    },
+    "pushNotificationForUsers": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Id",
+            "Region"
+          ],
+          "category": "analytics",
+          "resourceName": "netupPinpoint"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::089629276674:role/netupLambdaRolef9fda70f-prod",
+        "Region": "us-east-2",
+        "Arn": "arn:aws:lambda:us-east-2:089629276674:function:pushNotificationForUsers-prod",
+        "Name": "pushNotificationForUsers-prod",
+        "LambdaExecutionRole": "netupLambdaRolef9fda70f-prod"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.287Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/function/pushNotificationForUsers-cloudformation-template.json",
+        "logicalId": "functionpushNotificationForUsers"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+        "s3Key": "amplify-builds/pushNotificationForUsers-4c466970647063477475-build.zip"
+      }
+    },
+    "recsys": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::089629276674:role/netupLambdaRolef8c66b2b-prod",
+        "Region": "us-east-2",
+        "Arn": "arn:aws:lambda:us-east-2:089629276674:function:recsys-prod",
+        "Name": "recsys-prod",
+        "LambdaExecutionRole": "netupLambdaRolef8c66b2b-prod"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:39.288Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/function/recsys-cloudformation-template.json",
+        "logicalId": "functionrecsys"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-netup-prod-6caab-deployment",
+        "s3Key": "amplify-builds/recsys-6c5075624a4752346555-build.zip"
+      }
+    }
+  },
+  "notifications": {
+    "netupPinpoint": {
+      "Id": "1a7eb89bb25a44878581e9adf6875999",
+      "ResourceName": "netupPinpoint",
+      "Name": "netupPinpoint-prod",
+      "service": "Pinpoint",
+      "output": {
+        "Id": "1a7eb89bb25a44878581e9adf6875999",
+        "Name": "netupPinpoint-prod",
+        "Region": "us-east-2",
+        "APNS": {
+          "ApplicationId": "1a7eb89bb25a44878581e9adf6875999",
+          "CreationDate": "2024-05-27T08:25:16.156Z",
+          "DefaultAuthenticationMethod": "Certificate",
+          "Enabled": true,
+          "HasCredential": true,
+          "HasTokenKey": false,
+          "Id": "apns",
+          "IsArchived": false,
+          "LastModifiedDate": "2024-05-27T08:25:16.156Z",
+          "Platform": "APNS",
+          "Version": 1
+        },
+        "regulatedResourceName": "netupPinpoint"
+      },
+      "lastPushTimeStamp": "2024-07-31T07:15:31.574Z"
+    }
+  },
+  "storage": {
+    "prodstorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "output": {
+        "BucketName": "netupprodstorage6caab-prod",
+        "Region": "us-east-2"
+      },
+      "lastPushTimeStamp": "2024-08-07T23:24:44.284Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netup-prod-6caab-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageprodstorage"
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+#set($query = {
+    "bool": {
+        "must_not": [
+        {
+            "terms": {
+                "id.keyword": $ctx.args.filterList
+            }
+        }]
+    }
+})
+
+#set($functions = [])
+
+#if( !$util.isNullOrEmpty($ctx.args.language) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "terms": {
+                "userProfile.language.keyword": $ctx.args.language
+            }
+        },
+        "weight": 10
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.expertise) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "match": {
+                "userProfile.expertise": {
+                    "query": $ctx.args.expertise,
+                    "operator": "and"
+                }
+            }
+        },
+        "weight": 1
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.industry) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "match": {
+                "userProfile.industry": {
+                    "query": $ctx.args.industry,
+                    "operator": "and"
+                }
+            }
+        },
+        "weight": 1
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.title) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "match": {
+                "userProfile.title": {
+                    "query": $ctx.args.title,
+                    "operator": "and"
+                }
+            }
+        },
+        "weight": 1
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.companyName) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "match": {
+                "userProfile.company.companyName": {
+                    "query": $ctx.args.companyName,
+                    "operator": "and"
+                }
+            }
+        },
+        "weight": 1
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.interestedIndustry) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "terms": {
+                "userProfile.industry.keyword": $ctx.args.interestedIndustry
+            }
+        },
+        "weight": 3
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.intention) )
+    #set( $dummy = $functions.add({
+        "filter": {
+            "terms": {
+                "userProfile.intention.keyword": $ctx.args.intention
+            }
+        },
+        "weight": 2
+        })
+    )
+#end
+
+#if( !$util.isNullOrEmpty($ctx.args.latitude) && !$util.isNullOrEmpty($ctx.args.longitude) )
+    #set( $dummy = $functions.add({
+        "script_score": {
+            "script": {
+                "source": "if (doc['userProfile.location.coordinates.lat'].size() == 0 || doc['userProfile.location.coordinates.lon'].size() == 0) { return 0; } double lat = doc['userProfile.location.coordinates.lat'].value; double lon = doc['userProfile.location.coordinates.lon'].value; double distance = Math.sqrt(Math.pow(lat - params.lat, 2) + Math.pow(lon - params.lon, 2)); return distance < 10 ? 5 : distance >= 10 && distance <= 30 ? 2 : 0;",
+                "params": {
+                    "lat": $ctx.args.latitude,
+                    "lon": $ctx.args.longitude
+                }
+            }
+        }
+    }))
+#end
+
+#set($body = {
+  "query": {
+    "function_score": {
+      "query": $query,
+      "functions": $functions,
+      "score_mode": "sum",
+      "boost_mode": "replace"
+    }
+  },
+  "size": 100,
+  "sort": [
+    {
+      "_score": {
+        "order": "desc"
+      }
+    }
+  ],
+  "_source": false,
+  "fields": [
+    "id"
+  ]
+})
+
+$util.log.info("Body: $body")
+
+{
+  "version": "2017-02-28",
+  "operation": "GET",
+  "path": "/account/_search",
+  "params": {
+    "body": $util.toJson($body)
+  }
+}

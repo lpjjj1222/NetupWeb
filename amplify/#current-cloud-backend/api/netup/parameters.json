@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "netup",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-06-05T08:15:53.858Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnetupAuth",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
