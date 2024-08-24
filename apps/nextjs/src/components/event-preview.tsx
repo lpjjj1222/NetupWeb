@@ -256,6 +256,7 @@ const attendees = [
 const interestedIndustries = ['OTHERS', 'ELECTRICALENGINEERING']
 
 const EventPreview = ({ eventId }: any) => {
+  const link = `netup://global-link/event/${eventId}`;
   const [eventDetail, setEventDetail] = useState<any>();
   const languageEnum = eventDetail?.language;
   const [targetHostImages, setTargetHostImages] = useState<string[]>([]);
@@ -504,7 +505,9 @@ const EventPreview = ({ eventId }: any) => {
       <Footer>
         <Button
           className="gradient-button"
-          onClick={() => {}}
+          onClick={() => {
+            window.location.href = link;
+          }}
           style={{
             width: "90%",
             alignItems: "center",
@@ -516,6 +519,36 @@ const EventPreview = ({ eventId }: any) => {
           Join now!
         </Button>
       </Footer>
+      {/* Open in Netup App */}
+      <div 
+      style={{
+        padding: "8px 0",
+        backgroundColor: Colors.appColorPrimary,
+        color: Colors.white,
+        fontSize: "1.2rem",
+        fontWeight: "500",
+        position: "fixed",
+        bottom: 100,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 20,
+        width: "48%",
+      }}>
+        <button 
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "space-around",
+          padding: "0 15px",
+        }}
+        onClick={() => {
+          window.location.href = link;
+        }}
+        >
+          <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
+          <span>Open in App</span>
+        </button>
+      </div>
     </WrapperContainer>
   )
 };
