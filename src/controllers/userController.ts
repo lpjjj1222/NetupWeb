@@ -101,3 +101,23 @@ export const GetUserFollowers = async (client, userID) => {
       null
   );
 }
+
+export const getAccountBatchByIds = async (client, ids) => {
+  // get account by list of id
+  // console.log('userController - getAccountBatchByIds: ids: ', ids);
+  let accounts = [];
+  if (ids !== undefined && ids !== null) {
+    await Promise.all(ids?.map(id => getAccountById(client, id))).then(values => {
+      for (const value of values) {
+        if (value?.status === true) {
+          accounts.push(value?.data);
+        }
+      }
+    });
+  }
+  return new ApiResponse(
+    true,
+    'Completed getting account batch by ids',
+    accounts,
+  );
+};

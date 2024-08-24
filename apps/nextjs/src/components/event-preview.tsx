@@ -1,8 +1,16 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Colors from "../styles/Colors";
 import "../styles/preview.css";
-import { GENDER, INDUSTRIES, INTENTIONS, LANGUAGE } from "../enum";
+import GLOBAL from "~/global";
+import { GENDER, INDUSTRIES, INTENTIONS, LANGUAGE, EVENTTYPE, EVENTGENDER } from "../enum";
+import { downloadUserImagesFromS3, downloadEventImagesFromS3 } from "../../../../src/controllers/utils";
+import { blobToBase64, eventImagePrefix, userProfileImagePrefix  } from "../../../../src/controllers/formatConvert";
+import { GetEventDetails,GetEventAttendees } from "../../../../src/controllers/eventController";
+import { getAccountById, getAccountBatchByIds } from "../../../../src/controllers/userController";
+import moment from 'moment';
+import { set } from "zod";
 
 const WrapperContainer = styled.div<{ bgColor: string }>`
   background-color: ${Colors.white};
@@ -242,17 +250,153 @@ const attendees = [
   { userPhoto: "/images/preview/wechat.png" },  
 ];
 
-const HorizontalScrollList = [
-    { icon: "/images/preview/meal.png", title: "Type", details: "Coffee chat" },
-    { icon: "/images/preview/gender.png", title: "Gender", details: "Everyone" },
-    { icon: "/images/preview/langIcon.png", title: "Language", details: "English" },
-    { icon: "/images/preview/birthday.png", title: "Age", details: "20-43" },
-  ];
+
 
 
 const interestedIndustries = ['OTHERS', 'ELECTRICALENGINEERING']
 
 const EventPreview = ({ eventId }: any) => {
+  const [eventDetail, setEventDetail] = useState<any>();
+  const languageEnum = eventDetail?.language;
+  const [targetHostImages, setTargetHostImages] = useState<string[]>([]);
+  const [targetHostName, setTargetHostName] = useState<string>("");
+  const [attendees, setAttendees] = useState<any[]>([]);
+  const [eventImage, setEventImage] = useState<string>("");
+  const [eventTitle, setEventTitle] = useState<string>("");
+  const [eventDateTime, setEventDateTime] = useState<string>("");
+  const [eventLocation, setEventLocation] = useState<string>("");
+  const [eventCapacity, setEventCapacity] = useState<number>(0);
+  const [eventType, setEventType] = useState<string>("");
+  const [genders, setGenders] = useState<string[]>([]);
+  const arraysEqual = (a, b) =>
+    (a == null && b == null) ||
+    (a?.length === b?.length && a?.every((val, index) => val === b[index]));
+  const languageEnumStrings =
+    LANGUAGE.filter(i => i.enum === languageEnum).length > 0
+      ? LANGUAGE.filter(i => i.enum === languageEnum)[0].label
+      : null;
+  const [minAge, maxAge] = eventDetail?.ageRange ?? [18, 100];
+  const HorizontalScrollList = [
+    { icon: "/images/preview/meal.png", title: "Type", details: EVENTTYPE.find(t => t.enum === eventType)?.itemT, },
+    { icon: "/images/preview/gender.png", title: "Gender", details: EVENTGENDER.find(t => arraysEqual(t.enums, genders))?.label },
+    { icon: "/images/preview/langIcon.png", title: "Language", details: languageEnumStrings },
+    { icon: "/images/preview/birthday.png", title: "Age", details: maxAge == 100 && minAge == 18 ? 'Open to All' : minAge + ' - ' + maxAge,},
+  ];
+  const UTCtoLocalWithYear = (date, format='MMM DD YYYY, hh:mm a') => {
+    return moment(date).local().format(format);
+  };
+  const getHostImage = async (hostId, photoIndex) => {
+    const index = photoIndex[0];
+    const userPhotoID = userProfileImagePrefix + index;
+    const downloadImageResponse = await downloadUserImagesFromS3(
+      userPhotoID,
+      hostId,
+    );
+    if (downloadImageResponse.status == true) {
+      const blob = await downloadImageResponse.data.blob();
+      const userImgBase64 = await blobToBase64(blob);
+      return userImgBase64;
+    }
+    return null;
+  };
+  
+  const getEventImage = async eventId => {
+    const downloadImageResponse = await downloadEventImagesFromS3(
+      eventImagePrefix + eventId,
+    );
+    if (downloadImageResponse?.status == true) {
+      const blob = await downloadImageResponse?.data?.blob();
+      const eventImgBase64 = await blobToBase64(blob);
+      return eventImgBase64;
+    }
+    return null;
+  };
+
+  const getEventAssociatesInner = async (client, eventDetails) => {
+    const eventId = eventDetails?.id;
+    const hostId = eventDetails?.hostId;
+    console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetails);
+    const hostData = await getAccountById(client, hostId);
+    const hostName = hostData?.data?.userName;
+    const photoIndex = hostData?.data?.userProfile?.photoIndex;
+    const hostImage = await getHostImage(hostId, photoIndex);
+    const eventImage = await getEventImage(eventId);
+    return [hostName, hostId, hostImage, eventImage];
+  };
+
+  const getEventDetailsWithExtraInfo = async (client, eventId) => {
+    const eventDetails = await GetEventDetails(client, eventId);
+    const extra_info = await getEventAssociatesInner(client, eventDetails?.data);
+    eventDetails.data.hostName = extra_info[0];
+    eventDetails.data.hostId = extra_info[1];
+    eventDetails.data.hostImage = extra_info[2];
+    eventDetails.data.eventImage = extra_info[3];
+    return eventDetails;
+  };
+
+  const getAccountImage = (accountIds) => {
+    getAccountBatchByIds(GLOBAL.client, accountIds).then(attendeeResp => {
+      if (attendeeResp?.status !== false && attendeeResp?.data !== undefined && attendeeResp?.data !== null) {
+        let attendees = attendeeResp?.data
+        attendees.forEach(async account => {
+          const photoIndex = account?.userProfile?.photoIndex[0];
+          const userPhotoID = userProfileImagePrefix + photoIndex;
+          const imageResp = await downloadUserImagesFromS3(userPhotoID, account?.id)
+          let imgBase64: string = ""; // Explicitly type imgBase64 as a string
+          if (imageResp?.status == true) {
+            const userProfileBlob = await imageResp?.data.blob()
+            const userImgBase64 = await blobToBase64(userProfileBlob)
+            imgBase64 = userImgBase64
+          }
+          account["userPhoto"] = imgBase64
+          setAttendees(attendees)
+        })
+      }
+    })
+  }
+
+  const getAttendees = (eventId) => {
+    GetEventAttendees(GLOBAL.client, eventId).then(eventAttendees => {
+      let accountIdSet = new Set()
+      eventAttendees.forEach(account => {
+        accountIdSet.add(account["user"])
+      });
+      const acocuntIds = Array.from(accountIdSet)
+      getAccountImage(acocuntIds);
+    })
+  }
+
+  useEffect(() => {
+    getEventDetailsWithExtraInfo(GLOBAL.client, eventId).then(eventDetail => {
+      // let temp_event_detail = eventDetail;
+      // temp_event_detail.data.eventId = eventDetail?.data?.id;
+      setEventDetail(eventDetail?.data);
+      setTargetHostImages([eventDetail?.data?.hostImage]);
+      setTargetHostName(eventDetail?.data?.hostName);
+      setEventImage(eventDetail?.data?.eventImage);
+      setEventTitle(eventDetail?.data?.title);
+      // updateFollowers(eventDetail?.data?.hostId);
+      getAttendees(eventDetail?.data?.id);
+      let date = new Date(eventDetail?.data?.startTime);
+      const dateString = UTCtoLocalWithYear(date);
+      setEventDateTime(dateString);
+      setEventType(eventDetail?.data?.eventType);
+      setGenders(eventDetail?.data?.genders);
+
+      const eventLocation = eventType == 'ONLINE' ? eventDetail?.data?.eventLink : eventDetail?.data?.location?.address;
+      setEventLocation(eventLocation);
+      const capacity = eventDetail?.data?.capacity ?? 'unlimited';
+      setEventCapacity(capacity);
+      console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetail);
+    });
+    // const fetchEventDetails = async () => {
+    //   const eventDetails = await GetEventDetails(GLOBAL.client, eventId);
+    //   console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetails);
+    // }
+    // fetchEventDetails();
+    
+  }, []);
+
   return (
     <WrapperContainer bgColor={Colors.white}>
       <Header>
@@ -272,21 +416,21 @@ const EventPreview = ({ eventId }: any) => {
         </div>
       </Header>
       <HostContainer> 
-        <HostImage src={"/images/preview/wechat.png"} alt="host" />
-        <HostName>Paige Lin</HostName>
+        <HostImage src={eventDetail?.hostImage} alt="host" />
+        <HostName>{eventDetail?.hostName}</HostName>
       </HostContainer>
-      <EventImage src={"/images/preview/wechat.png"} alt="event" />
+      <EventImage src={eventDetail?.eventImage} alt="event" />
       <TitleLine>
-        <Title>Event Title</Title>
+        <Title>{eventDetail?.eventName}</Title>
         <ShareButton>
           <span style={{fontSize:11, marginLeft:5}}>Share</span>
-          <img src={"/images/preview/shareOrange.png"} alt="share" style={{ width: 12, height: 12, marginLeft: 10, marginRight:5}}/>
+          <img src={"/images/preview/shareOrange.png"} alt="share" style={{ width: 12, height: 12, marginLeft: 10, marginRight:10}}/>
         </ShareButton>
       </TitleLine>
-      <DateTime>Monday, 12th July 2021</DateTime>
-      <Location>1234, 5th Avenue, New York, NY 10001</Location>
+      <DateTime>{eventDateTime}</DateTime>
+      <Location>{eventLocation}</Location>
       <CapacityContainer>
-        <Capacity>Capacity: 50</Capacity>
+        <Capacity>Capacity: {eventCapacity}</Capacity>
         <Attendees>
           <span style={{ marginRight:2 }}>Attendees: </span>
           {attendees.slice(0, 5).map((attendee, index) => (
@@ -308,7 +452,7 @@ const EventPreview = ({ eventId }: any) => {
           flexWrap: "wrap",
         }}
       >
-        {interestedIndustries.map((industry, index) => {
+        {eventDetail?.industries.map((industry, index) => {
           const indu = INDUSTRIES.find((item) => item.enum === industry);
           const label = indu?.itemT;
           return (
@@ -345,7 +489,7 @@ const EventPreview = ({ eventId }: any) => {
         ))}
       </ScrollViewWrap>
       <Details>
-        let's have a coffee chat!
+        {eventDetail?.description}
       </Details>
       <MessageReport>
         <ButtonWrapper >

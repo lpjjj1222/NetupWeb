@@ -1,3 +1,4 @@
+// import ImagePath from '../../constants/ImagePath';
 
 export const GENDER = [
   {label: 'Male', value: 'Male', enum: 'MALE'},
@@ -14,21 +15,25 @@ export const LANGUAGE = [
   {
     label: 'English',
     value: 'English',
+    // image: ImagePath.englishFilter,
     enum: 'ENGLISH',
   },
   {
     label: 'Chinese',
     value: 'Chinese',
+    // image: ImagePath.chinaFilter,
     enum: 'CHINESE',
   },
   {
     label: 'French',
     value: 'French',
+    // image: ImagePath.franceFilter,
     enum: 'FRENCH',
   },
   {
     label: 'Spanish',
     value: 'Spanish',
+    // image: ImagePath.spainFilter,
     enum: 'SPANISH',
   },
 ];
@@ -75,9 +80,9 @@ export const INTENTIONS = [
 
 export const EVENTTYPE = [
   {id: 1, itemT: 'Coffee chat', enum: 'COFFEECHAT'},
-  {id: 2, itemT: 'Meal', enum: 'MEAL', },
-  {id: 3, itemT: 'Online', enum: 'ONLINE', },
-  {id: 4, itemT: 'Others', enum: 'OTHERS', },
+  {id: 2, itemT: 'Meal', enum: 'MEAL'},
+  {id: 3, itemT: 'Online', enum: 'ONLINE'},
+  {id: 4, itemT: 'Others', enum: 'OTHERS'},
 ]
 
 export const EVENTPRIVACY = [
