@@ -11,8 +11,9 @@ import { GetEventDetails,GetEventAttendees } from "../../../../src/controllers/e
 import { getAccountById, getAccountBatchByIds } from "../../../../src/controllers/userController";
 import moment from 'moment';
 import { set } from "zod";
+import { ClipLoader } from "react-spinners";
 
-const WrapperContainer = styled.div<{ bgColor: string }>`
+const WrapperContainer = styled.div`
   background-color: ${Colors.white};
   display: flex;
   flex-direction: column;
@@ -241,6 +242,18 @@ const ReportText = styled.span`
   margin-left: 6px;
 `;
 
+const Loader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${Colors.white};
+`;
+
 
 const attendees = [
   { userPhoto: "/images/preview/wechat.png" },
@@ -269,6 +282,7 @@ const EventPreview = ({ eventId }: any) => {
   const [eventCapacity, setEventCapacity] = useState<number>(0);
   const [eventType, setEventType] = useState<string>("");
   const [genders, setGenders] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const arraysEqual = (a, b) =>
     (a == null && b == null) ||
     (a?.length === b?.length && a?.every((val, index) => val === b[index]));
@@ -316,7 +330,6 @@ const EventPreview = ({ eventId }: any) => {
   const getEventAssociatesInner = async (client, eventDetails) => {
     const eventId = eventDetails?.id;
     const hostId = eventDetails?.hostId;
-    console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetails);
     const hostData = await getAccountById(client, hostId);
     const hostName = hostData?.data?.userName;
     const photoIndex = hostData?.data?.userProfile?.photoIndex;
@@ -343,7 +356,7 @@ const EventPreview = ({ eventId }: any) => {
           const photoIndex = account?.userProfile?.photoIndex[0];
           const userPhotoID = userProfileImagePrefix + photoIndex;
           const imageResp = await downloadUserImagesFromS3(userPhotoID, account?.id)
-          let imgBase64: string = ""; // Explicitly type imgBase64 as a string
+          let imgBase64: string = "";
           if (imageResp?.status == true) {
             const userProfileBlob = await imageResp?.data.blob()
             const userImgBase64 = await blobToBase64(userProfileBlob)
@@ -369,14 +382,11 @@ const EventPreview = ({ eventId }: any) => {
 
   useEffect(() => {
     getEventDetailsWithExtraInfo(GLOBAL.client, eventId).then(eventDetail => {
-      // let temp_event_detail = eventDetail;
-      // temp_event_detail.data.eventId = eventDetail?.data?.id;
       setEventDetail(eventDetail?.data);
       setTargetHostImages([eventDetail?.data?.hostImage]);
       setTargetHostName(eventDetail?.data?.hostName);
       setEventImage(eventDetail?.data?.eventImage);
       setEventTitle(eventDetail?.data?.title);
-      // updateFollowers(eventDetail?.data?.hostId);
       getAttendees(eventDetail?.data?.id);
       let date = new Date(eventDetail?.data?.startTime);
       const dateString = UTCtoLocalWithYear(date);
@@ -388,18 +398,15 @@ const EventPreview = ({ eventId }: any) => {
       setEventLocation(eventLocation);
       const capacity = eventDetail?.data?.capacity ?? 'unlimited';
       setEventCapacity(capacity);
-      console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetail);
+      setLoading(false);
     });
-    // const fetchEventDetails = async () => {
-    //   const eventDetails = await GetEventDetails(GLOBAL.client, eventId);
-    //   console.log("EventPreview - eventDetail@@@@@@@@@@@@@@@@@@@@@@@@", eventDetails);
-    // }
-    // fetchEventDetails();
-    
   }, []);
 
   return (
-    <WrapperContainer bgColor={Colors.white}>
+    <div style={{backgroundColor: Colors.white}}>
+    {!loading ? (
+      <div>
+    <WrapperContainer>
       <Header>
         <div style={{ width: 26, height: 26 }}>
           <Image 
@@ -416,6 +423,7 @@ const EventPreview = ({ eventId }: any) => {
             height="100%"/>
         </div>
       </Header>
+
       <HostContainer> 
         <HostImage src={eventDetail?.hostImage} alt="host" />
         <HostName>{eventDetail?.hostName}</HostName>
@@ -549,7 +557,16 @@ const EventPreview = ({ eventId }: any) => {
           <span>Open in App</span>
         </button>
       </div>
+      
+
     </WrapperContainer>
+    </div>
+  ) : (
+    <Loader>
+      <ClipLoader color={Colors.appColorPrimary} size={50} />
+    </Loader>
+  )}
+  </div>
   )
 };
 
