@@ -63,6 +63,7 @@ const Image = styled.img`
 
 const UserPreview = ({ userId }: any) => {
   const link = `netup://global-link/user/${userId}`;
+  const appUrl = "https://apps.apple.com/us/app/netup-social/id6478843705"
   return (
     <WrapperContainer>
       <Header>
@@ -114,6 +115,9 @@ const UserPreview = ({ userId }: any) => {
           <Button
             onClick={() => {
               window.location.href = link;
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
             }}
             style={{
               marginRight: 10,
@@ -140,6 +144,9 @@ const UserPreview = ({ userId }: any) => {
           className="gradient-button"
           onClick={() => {
             window.location.href = link;
+            window.setTimeout(() => {
+              window.location.href = appUrl
+            }, 1000)
           }}
           style={{
             width: "50%",
