@@ -114,10 +114,19 @@ const UserPreview = ({ userId }: any) => {
           </Button>
           <Button
             onClick={() => {
-              window.location.href = link;
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 1000)
+              try {
+                window.location.href = link;
+              }
+              catch (error) {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 1000)
+              }
+              finally {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 1000)
+              }
             }}
             style={{
               marginRight: 10,
@@ -143,10 +152,19 @@ const UserPreview = ({ userId }: any) => {
         <Button
           className="gradient-button"
           onClick={() => {
-            window.location.href = link;
-            window.setTimeout(() => {
-              window.location.href = appUrl
-            }, 1000)
+            try {
+              window.location.href = link;
+            }
+            catch (error) {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
+            }
+            finally {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
+            }
           }}
           style={{
             width: "50%",
