@@ -92,9 +92,6 @@ const UserPreview = ({ userId }: any) => {
           <Button
             onClick={() => {
               window.location.href = link;
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 1000)
             }}
             style={{
               marginRight: 10,
@@ -119,9 +116,6 @@ const UserPreview = ({ userId }: any) => {
           <Button
             onClick={() => {
               window.location.href = link;
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 1500)
             }}
             style={{
               marginRight: 10,
@@ -210,7 +204,7 @@ const UserPreview = ({ userId }: any) => {
         fontSize: "1.2rem",
         fontWeight: "500",
         position: "fixed",
-        bottom: 45,
+        bottom: 49,
         left: '50%',
         transform: 'translateX(-50%)',
         borderRadius: 20,
@@ -218,7 +212,7 @@ const UserPreview = ({ userId }: any) => {
       }}>
         <button 
         style={{
-          marginLeft:"10px",
+          marginLeft:"5px",
           display: "flex",
           justifyContent: "space-around",
           alignItems: "space-around",
