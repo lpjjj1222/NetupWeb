@@ -158,12 +158,7 @@ const UserPreview = ({ userId }: any) => {
             catch (error) {
               window.setTimeout(() => {
                 window.location.href = appUrl
-              }, 1000)
-            }
-            finally {
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 1000)
+              }, 100)
             }
           }}
           style={{
