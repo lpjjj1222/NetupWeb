@@ -207,14 +207,14 @@ const UserPreview = ({ userId }: any) => {
         padding: "8px 0",
         backgroundColor: Colors.appColorSecondary,
         color: Colors.white,
-        fontSize: "0.9rem",
-        fontWeight: "300",
+        fontSize: "1.2rem",
+        fontWeight: "500",
         position: "fixed",
-        bottom: 50,
+        bottom: 45,
         left: '50%',
         transform: 'translateX(-50%)',
         borderRadius: 20,
-        width: "40%",
+        width: "44%",
       }}>
         <button 
         style={{
