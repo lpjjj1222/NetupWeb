@@ -195,12 +195,40 @@ const UserPreview = ({ userId }: any) => {
         }}
         onClick={() => {
           window.location.href = link;
-          window.setTimeout(() => {
-            window.location.href = appUrl
-          }, 2500)
+        }
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
           <span>Open in App</span>
+        </button>
+      </div>
+      {/* Navigate to apple store */}
+      <div 
+      style={{
+        padding: "8px 0",
+        backgroundColor: Colors.appColorSecondary,
+        color: Colors.white,
+        fontSize: "0.8rem",
+        fontWeight: "500",
+        position: "fixed",
+        bottom: 70,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 20,
+        width: "48%",
+      }}>
+        <button 
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "space-around",
+          padding: "0 15px",
+        }}
+        onClick={() => {
+          window.location.href = appUrl
+        }
+        >
+          <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
+          <span>Download Netup</span>
         </button>
       </div>
     </WrapperContainer>
