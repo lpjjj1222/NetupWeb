@@ -195,7 +195,7 @@ const UserPreview = ({ userId }: any) => {
         }}
         onClick={() => {
           window.location.href = link;
-        }
+        }}
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
           <span>Download in App</span>
