@@ -98,11 +98,6 @@ const UserPreview = ({ userId }: any) => {
                   window.location.href = appUrl
                 }, 800)
               }
-              finally {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 800)
-              }
             }}
             style={{
               marginRight: 10,
@@ -130,11 +125,6 @@ const UserPreview = ({ userId }: any) => {
                 window.location.href = link;
               }
               catch (error) {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 800)
-              }
-              finally {
                 window.setTimeout(() => {
                   window.location.href = appUrl
                 }, 800)
@@ -168,11 +158,6 @@ const UserPreview = ({ userId }: any) => {
               window.location.href = link;
             }
             catch (error) {
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 800)
-            }
-            finally {
               window.setTimeout(() => {
                 window.location.href = appUrl
               }, 800)
@@ -224,11 +209,6 @@ const UserPreview = ({ userId }: any) => {
               window.location.href = link;
             }
             catch (error) {
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 800)
-            }
-            finally {
               window.setTimeout(() => {
                 window.location.href = appUrl
               }, 800)
