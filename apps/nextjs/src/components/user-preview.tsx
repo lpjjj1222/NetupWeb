@@ -142,9 +142,6 @@ const UserPreview = ({ userId }: any) => {
           className="gradient-button"
           onClick={() => {
             window.location.href = link;
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 2000)
           }}
           style={{
             width: "50%",
@@ -204,7 +201,7 @@ const UserPreview = ({ userId }: any) => {
         fontSize: "1.2rem",
         fontWeight: "500",
         position: "fixed",
-        bottom: 49,
+        bottom: 52,
         left: '50%',
         transform: 'translateX(-50%)',
         borderRadius: 20,
