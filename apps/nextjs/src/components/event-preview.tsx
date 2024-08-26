@@ -270,6 +270,7 @@ const interestedIndustries = ['OTHERS', 'ELECTRICALENGINEERING']
 
 const EventPreview = ({ eventId }: any) => {
   const link = `netup://global-link/event/${eventId}`;
+  const appUrl = "https://apps.apple.com/us/app/netup-social/id6478843705";
   const [eventDetail, setEventDetail] = useState<any>();
   const languageEnum = eventDetail?.language;
   const [targetHostImages, setTargetHostImages] = useState<string[]>([]);
@@ -557,8 +558,35 @@ const EventPreview = ({ eventId }: any) => {
           <span>Open in App</span>
         </button>
       </div>
-      
-
+      <div 
+      style={{
+        padding: "8px 0",
+        backgroundColor: Colors.appColorSecondary,
+        color: Colors.white,
+        fontSize: "1.2rem",
+        fontWeight: "500",
+        position: "fixed",
+        bottom: 52,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 20,
+        width: "48%",
+      }}>
+        <button 
+        style={{
+          marginLeft:"5px",
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "space-around",
+          padding: "0 15px",
+        }}
+        onClick={() => {
+          window.location.href = appUrl
+        }}
+        >
+          <span>Download Netup</span>
+        </button>
+      </div>
     </WrapperContainer>
     </div>
   ) : (
