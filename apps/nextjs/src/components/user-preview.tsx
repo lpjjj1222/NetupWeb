@@ -64,6 +64,7 @@ const Image = styled.img`
 const UserPreview = ({ userId }: any) => {
   const link = `netup://global-link/user/${userId}`;
   const appUrl = "https://apps.apple.com/us/app/netup-social/id6478843705";
+  
   return (
     <WrapperContainer>
       <Header>
@@ -96,7 +97,12 @@ const UserPreview = ({ userId }: any) => {
               catch (error) {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 800)
+                }, 1000)
+              }
+              finally {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 1000)
               }
             }}
             style={{
@@ -127,7 +133,12 @@ const UserPreview = ({ userId }: any) => {
               catch (error) {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 800)
+                }, 1000)
+              }
+              finally {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 1000)
               }
             }}
             style={{
@@ -160,7 +171,12 @@ const UserPreview = ({ userId }: any) => {
             catch (error) {
               window.setTimeout(() => {
                 window.location.href = appUrl
-              }, 800)
+              }, 1000)
+            }
+            finally {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
             }
           }}
           style={{
@@ -211,7 +227,12 @@ const UserPreview = ({ userId }: any) => {
             catch (error) {
               window.setTimeout(() => {
                 window.location.href = appUrl
-              }, 800)
+              }, 1000)
+            }
+            finally {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
             }
           }}
         >
