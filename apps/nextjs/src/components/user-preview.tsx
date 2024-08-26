@@ -90,7 +90,19 @@ const UserPreview = ({ userId }: any) => {
         >
           <Button
             onClick={() => {
-              window.location.href = link;
+              try {
+                window.location.href = link;
+              }
+              catch (error) {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 800)
+              }
+              finally {
+                window.setTimeout(() => {
+                  window.location.href = appUrl
+                }, 800)
+              }
             }}
             style={{
               marginRight: 10,
@@ -120,12 +132,12 @@ const UserPreview = ({ userId }: any) => {
               catch (error) {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 1000)
+                }, 800)
               }
               finally {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 1000)
+                }, 800)
               }
             }}
             style={{
@@ -158,7 +170,12 @@ const UserPreview = ({ userId }: any) => {
             catch (error) {
               window.setTimeout(() => {
                 window.location.href = appUrl
-              }, 100)
+              }, 800)
+            }
+            finally {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 800)
             }
           }}
           style={{
@@ -203,8 +220,20 @@ const UserPreview = ({ userId }: any) => {
           padding: "0 15px",
         }}
         onClick={() => {
-          window.location.href = link;
-        }}
+            try {
+              window.location.href = link;
+            }
+            catch (error) {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 800)
+            }
+            finally {
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 800)
+            }
+          }}
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
           <span>Open in App</span>
