@@ -214,7 +214,7 @@ const UserPreview = ({ userId }: any) => {
         left: '50%',
         transform: 'translateX(-50%)',
         borderRadius: 20,
-        width: "44%",
+        width: "48%",
       }}>
         <button 
         style={{
