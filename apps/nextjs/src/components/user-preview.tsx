@@ -221,16 +221,8 @@ const UserPreview = ({ userId }: any) => {
           padding: "0 15px",
         }}
         onClick={() => {
-            const https = require('https')
-  
-            https.get(link, res => {
-              if(res.statusCode === 200) {
-                window.location.href = link;
-              }
-              else {
-                window.location.href = appUrl;
-              }
-            })
+          window.setTimeout(function () { window.location.href = appUrl }, 1000);
+          window.location.href = link; 
           }}
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
