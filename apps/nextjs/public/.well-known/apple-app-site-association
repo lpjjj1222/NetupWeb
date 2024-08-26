@@ -5,7 +5,11 @@
            {
                "appID": "HBSAFB9N3N.social.netup.netup",
                "paths": [ "*"]
-           }
+           },
+           {
+            "appID": "HBSAFB9N3N.social.netup",
+            "paths": [ "*"]
+        }
        ]
    }
 }
