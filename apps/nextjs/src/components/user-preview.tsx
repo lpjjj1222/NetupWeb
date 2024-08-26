@@ -221,7 +221,7 @@ const UserPreview = ({ userId }: any) => {
           padding: "0 15px",
         }}
         onClick={() => {
-          window.setTimeout(function () { window.location.href = appUrl }, 1000);
+          window.setTimeout(function () { window.location.href = appUrl }, 5000);
           window.location.href = link; 
           }}
         >
