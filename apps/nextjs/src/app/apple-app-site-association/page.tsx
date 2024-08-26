@@ -7,7 +7,7 @@ export default function AppleAppSiteAssociation() {
     // const router = useRouter();
 
     return (
-        {
+        `{
             "applinks": {
                 "apps": [],
                 "details": [
@@ -21,7 +21,7 @@ export default function AppleAppSiteAssociation() {
                      }
                 ]
             }
-         }
+         }`
     )
 
     // useEffect(() => {
