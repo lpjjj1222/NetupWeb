@@ -215,7 +215,6 @@ const UserPreview = ({ userId }: any) => {
           <span>Open in App</span>
         </button>
       </div>
-      <iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
     </WrapperContainer>
   );
 };
