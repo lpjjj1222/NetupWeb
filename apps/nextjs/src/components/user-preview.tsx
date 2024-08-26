@@ -91,19 +91,10 @@ const UserPreview = ({ userId }: any) => {
         >
           <Button
             onClick={() => {
-              try {
-                window.location.href = link;
-              }
-              catch (error) {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 1000)
-              }
-              finally {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 1000)
-              }
+              window.location.href = link;
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1000)
             }}
             style={{
               marginRight: 10,
@@ -127,19 +118,10 @@ const UserPreview = ({ userId }: any) => {
           </Button>
           <Button
             onClick={() => {
-              try {
-                window.location.href = link;
-              }
-              catch (error) {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 1000)
-              }
-              finally {
-                window.setTimeout(() => {
-                  window.location.href = appUrl
-                }, 1000)
-              }
+              window.location.href = link;
+              window.setTimeout(() => {
+                window.location.href = appUrl
+              }, 1500)
             }}
             style={{
               marginRight: 10,
@@ -165,19 +147,10 @@ const UserPreview = ({ userId }: any) => {
         <Button
           className="gradient-button"
           onClick={() => {
-            try {
-              window.location.href = link;
-            }
-            catch (error) {
+            window.location.href = link;
               window.setTimeout(() => {
                 window.location.href = appUrl
-              }, 1000)
-            }
-            finally {
-              window.setTimeout(() => {
-                window.location.href = appUrl
-              }, 1000)
-            }
+              }, 2000)
           }}
           style={{
             width: "50%",
@@ -221,9 +194,10 @@ const UserPreview = ({ userId }: any) => {
           padding: "0 15px",
         }}
         onClick={() => {
-          window.setTimeout(function () { window.location.href = appUrl }, 5000);
-          window.location.href = link; 
-          }}
+          window.location.href = link;
+          window.setTimeout(() => {
+            window.location.href = appUrl
+          }, 2500)
         >
           <img src={'/newBigLogo.png'} width="30px" height="30px" style={{marginRight:"10px"}} />
           <span>Open in App</span>
