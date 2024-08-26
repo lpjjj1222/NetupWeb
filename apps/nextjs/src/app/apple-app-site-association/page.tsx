@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
 
 export default function AppleAppSiteAssociation() {
-    const router = useRouter();
+    // const router = useRouter();
 
     return (
         {
@@ -24,7 +24,7 @@ export default function AppleAppSiteAssociation() {
          }
     )
 
-    useEffect(() => {
-        router.push("/public/apple-app-site-association");
-    })
+    // useEffect(() => {
+    //     router.push("/public/apple-app-site-association");
+    // })
 }
