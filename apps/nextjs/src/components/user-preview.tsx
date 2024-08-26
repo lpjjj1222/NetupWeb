@@ -120,12 +120,12 @@ const UserPreview = ({ userId }: any) => {
               catch (error) {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 500)
+                }, 1000)
               }
               finally {
                 window.setTimeout(() => {
                   window.location.href = appUrl
-                }, 500)
+                }, 1000)
               }
             }}
             style={{
@@ -215,7 +215,6 @@ const UserPreview = ({ userId }: any) => {
           <span>Open in App</span>
         </button>
       </div>
-      <iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
     </WrapperContainer>
   );
 };
