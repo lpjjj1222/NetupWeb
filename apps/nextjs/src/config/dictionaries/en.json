@@ -53,7 +53,7 @@
     "": ""
   },
   "common": {
-    "copyright": "Copyright © ${currentYear} Netup Limited. All rights reserved.",
+    "copyright": "Copyright © ${currentYear} Gugu LLC. All rights reserved.",
     "dashboard": {
       "main_nav_documentation": "Documentation",
       "main_nav_support": "Support",
