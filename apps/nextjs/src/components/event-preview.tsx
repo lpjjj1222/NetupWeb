@@ -395,8 +395,8 @@ const EventPreview = ({ eventId }: any) => {
       setEventType(eventDetail?.data?.eventType);
       setGenders(eventDetail?.data?.genders);
 
-      const eventLocation = eventType == 'ONLINE' ? eventDetail?.data?.eventLink : eventDetail?.data?.location?.address;
-      setEventLocation(eventLocation);
+      const eventCity = eventType == 'ONLINE' ? "Online" : eventDetail?.data?.location?.city + ", " + eventDetail?.data?.location?.state + ", " + eventDetail?.data?.location?.country;
+      setEventLocation(eventCity + ` - Check the detailed location from the Netup app!`);
       const capacity = eventDetail?.data?.capacity ?? 'unlimited';
       setEventCapacity(capacity);
       setLoading(false);
