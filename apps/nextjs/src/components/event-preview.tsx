@@ -408,23 +408,6 @@ const EventPreview = ({ eventId }: any) => {
     {!loading ? (
       <div>
     <WrapperContainer>
-      <Header>
-        <div style={{ width: 26, height: 26 }}>
-          <Image 
-            src={"/images/preview/backBtn.png"} 
-            alt="back"
-            width="100%"
-            height="100%"/>
-        </div>
-        <div style={{ width: 26, height: 26 }}>
-          <Image
-            src={"/images/preview/likeEmp.png"}
-            alt="next"
-            width="100%"
-            height="100%"/>
-        </div>
-      </Header>
-
       <HostContainer> 
         <HostImage src={eventDetail?.hostImage} alt="host" />
         <HostName>{eventDetail?.hostName}</HostName>
