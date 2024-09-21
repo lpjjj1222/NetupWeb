@@ -116,6 +116,7 @@ export const EVENTGENDER = [
 export const EVENTSTATUS = [
   {id: 1, itemT: 'Interested', enum: 'INTERESTED'},
   {id: 2, itemT: 'Attending', enum: 'ATTENDING'},
+  {id: 3, itemT: 'Attended', enum: 'ATTENDED'},
 ];
 
 export const EVENTSORTBY = [
