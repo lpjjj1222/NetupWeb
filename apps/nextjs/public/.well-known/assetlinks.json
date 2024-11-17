@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.netup",
       "sha256_cert_fingerprints": [
-        "77:CB:4D:CD:DE:67:A5:A2:E6:F1:50:24:B2:29:25:12:8F:BB:6C:CD:2B:02:84:98:66:74:43:D6:42:8C:62:9E"
+        "77:CB:4D:CD:DE:67:A5:A2:E6:F1:50:24:B2:29:25:12:8F:BB:6C:CD:2B:02:84:98:66:74:43:D6:42:8C:62:9E",
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
       ]
     }
   }
