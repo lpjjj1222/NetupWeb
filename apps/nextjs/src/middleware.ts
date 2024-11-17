@@ -67,6 +67,11 @@ export default async function middleware(request: NextRequest) {
   // };
 
   if (pathname.startsWith("/app-redirect")) {
+    const userAgent = request.headers.get("user-agent") || "";
+    const isAndroid = /Android/i.test(userAgent);
+    if (isAndroid) {
+      return NextResponse.redirect(`netup://open${pathname}`);
+    }
     return NextResponse.next();
   }
 
