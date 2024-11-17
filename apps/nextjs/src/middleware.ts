@@ -7,7 +7,6 @@ import { withAuth } from "next-auth/middleware";
 
 import { i18n } from "~/config/i18n-config";
 
-
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
@@ -19,9 +18,8 @@ function getLocale(request: NextRequest): string | undefined {
   );
   // return matchLocale(languages, locales, i18n.defaultLocale);
   //禁用语言匹配
-  return 'en';
+  return "en";
 }
-
 
 /**
  * 1、 if the request is public page and don't have locale, redirect to locale page
@@ -31,11 +29,7 @@ function getLocale(request: NextRequest): string | undefined {
  * @returns
  */
 export default async function middleware(request: NextRequest) {
-
-  
-
   const pathname = request.nextUrl.pathname;
-
 
   // // 检查请求路径是否为 /download 或 /en/download
   // if (pathname === '/download' || pathname === '/en/download') {
@@ -72,6 +66,9 @@ export default async function middleware(request: NextRequest) {
   //   }
   // };
 
+  if (pathname.startsWith("/app-redirect")) {
+    return NextResponse.next();
+  }
 
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
@@ -89,7 +86,6 @@ export default async function middleware(request: NextRequest) {
       ),
     );
   }
-
 }
 
 export const config = {
