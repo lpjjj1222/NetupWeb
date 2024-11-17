@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.netup",
+      "sha256_cert_fingerprints": [
+        "77:CB:4D:CD:DE:67:A5:A2:E6:F1:50:24:B2:29:25:12:8F:BB:6C:CD:2B:02:84:98:66:74:43:D6:42:8C:62:9E"
+      ]
+    }
+  }
+]
