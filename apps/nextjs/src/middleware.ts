@@ -70,7 +70,9 @@ export default async function middleware(request: NextRequest) {
     const userAgent = request.headers.get("user-agent") || "";
     const isAndroid = /Android/i.test(userAgent);
     if (isAndroid) {
-      return NextResponse.redirect(`netup://open${pathname}`);
+      return NextResponse.redirect(
+        `netup://open${pathname}${request.nextUrl.search}`,
+      );
     }
     return NextResponse.next();
   }
